@@ -1,8 +1,8 @@
-PWD /Users/simonerussolillo/Downloads/RASD Software Engineering 2 - RussolilloVisaniWang
+PWD /Users/simonerussolillo/Desktop/RussolilloVisaniWang/LaTex
 INPUT /usr/local/texlive/2024/texmf.cnf
 INPUT /usr/local/texlive/2024/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT /Users/simonerussolillo/Downloads/RASD Software Engineering 2 - RussolilloVisaniWang/Thesis.tex
+INPUT /Users/simonerussolillo/Desktop/RussolilloVisaniWang/LaTex/Thesis.tex
 OUTPUT Thesis.log
 INPUT ./Configuration_Files/PoliMi3i_thesis.cls
 INPUT Configuration_Files/PoliMi3i_thesis.cls
