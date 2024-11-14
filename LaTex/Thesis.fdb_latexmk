@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex Thesis"] 1731420665.80161 "Thesis.aux" "Thesis.bbl" "Thesis" 1731421208.0821 0
+["bibtex Thesis"] 1731420665.80161 "Thesis.aux" "Thesis.bbl" "Thesis" 1731581732.98028 0
   "./Thesis_bibliography.bib" 1731419783.02823 408 973d4644c34b08406a666ce1fc9ba7d4 ""
   "/usr/local/texlive/2024/texmf-dist/bibtex/bst/base/plain.bst" 1292289607 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "Thesis.aux" 1731421207.59682 2111 a8c72db4febe22c6b5e70cf58282d6b0 "pdflatex"
+  "Thesis.aux" 1731581732.14754 2111 a8c72db4febe22c6b5e70cf58282d6b0 "pdflatex"
   (generated)
   "Thesis.bbl"
   "Thesis.blg"
   (rewritten before read)
-["pdflatex"] 1731421205.71457 "/Users/simonerussolillo/Desktop/RussolilloVisaniWang/LaTex/Thesis.tex" "Thesis.pdf" "Thesis" 1731421208.08228 0
+["pdflatex"] 1731581729.81264 "/Users/simonerussolillo/Desktop/RussolilloVisaniWang/LaTex/Thesis.tex" "Thesis.pdf" "Thesis" 1731581732.98072 0
   "/Users/simonerussolillo/Desktop/RussolilloVisaniWang/LaTex/Thesis.tex" 1731420660.66421 9218 75f1ba418031cde6a91fa3944661b35f ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -270,19 +270,19 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1729783373.94435 5467645 128b85b7cde5f5edc5cb7f1dd7ff8736 ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1729783332 8221430 38c71d822dccd096698a82cfae46b78a ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
-  "Chapter_1.tex" 1731421204.32741 198 95dda175cfd02bbe01b7e11119238a68 ""
+  "Chapter_1.tex" 1731581729.17924 220 c128571f13b739155765b78038ed8f47 ""
   "Configuration_Files/PoliMi3i_thesis.cls" 1731414930 5369 d70d595169b74c252fe2fad96951dd63 ""
   "Configuration_Files/config.tex" 1731414930 2475 e3d451e7831a76e988a406bacb3432a1 ""
   "Images/./raggiera_polimi.eps" 1731414930 1813066 dca994a8e6dbfff46979ea0a845ddce3 ""
   "Images/02_ING_IND_INFORMAZIONE_COL_POSITIVO.eps" 1731414930 1016894 87cec33dc4ce62619be8e2b6e306843d ""
   "Thesis.acr" 0 -1 0 ""
-  "Thesis.aux" 1731421207.59682 2111 a8c72db4febe22c6b5e70cf58282d6b0 "pdflatex"
+  "Thesis.aux" 1731581732.14754 2111 a8c72db4febe22c6b5e70cf58282d6b0 "pdflatex"
   "Thesis.bbl" 1731420665.94892 122 bf45bce1860d3ff157c9aa570d91ba3d "bibtex Thesis"
-  "Thesis.lof" 1731421207.59835 50 a87a50f332d703380956aed3695844de "pdflatex"
-  "Thesis.lot" 1731421207.59839 50 a87a50f332d703380956aed3695844de "pdflatex"
-  "Thesis.out" 1731421207.59803 1007 e8b1c60ff90b247f1c970846740cffdf "pdflatex"
+  "Thesis.lof" 1731581732.14916 50 a87a50f332d703380956aed3695844de "pdflatex"
+  "Thesis.lot" 1731581732.14919 50 a87a50f332d703380956aed3695844de "pdflatex"
+  "Thesis.out" 1731581732.14881 1007 e8b1c60ff90b247f1c970846740cffdf "pdflatex"
   "Thesis.tex" 1731420660.66421 9218 75f1ba418031cde6a91fa3944661b35f ""
-  "Thesis.toc" 1731421207.59832 696 cd3180507aa800e7256f1b6835d66e2b "pdflatex"
+  "Thesis.toc" 1731581732.14912 696 cd3180507aa800e7256f1b6835d66e2b "pdflatex"
   "Thesis_Acronyms.tex" 1731414930 51 8b0381c6b78b88573b784ae253a5f5c1 ""
   (generated)
   "Thesis.acn"
