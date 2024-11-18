@@ -5,7 +5,7 @@ Requirement Engineering and Design Project
 simone.russolillo@mail.polimi.it
 11100725
 
-**Valeria Benedetta Visani**
+**Valeria Benedetta Cecilia Visani**
 valeriabenedetta.visani@mail.polimi.it
 10730247
 
