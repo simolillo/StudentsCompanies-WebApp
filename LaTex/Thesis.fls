@@ -551,9 +551,9 @@ INPUT ./Images/./raggiera_polimi-eps-converted-to.pdf
 INPUT ./Images/./raggiera_polimi.eps
 INPUT ./Images/./raggiera_polimi-eps-converted-to.pdf
 INPUT ./Images/./raggiera_polimi-eps-converted-to.pdf
-INPUT ./Chapter_1.tex
-INPUT ./Chapter_1.tex
-INPUT Chapter_1.tex
+INPUT ./Per_fare_prove.tex
+INPUT ./Per_fare_prove.tex
+INPUT Per_fare_prove.tex
 INPUT ./Thesis.bbl
 INPUT ./Thesis.bbl
 INPUT Thesis.bbl
