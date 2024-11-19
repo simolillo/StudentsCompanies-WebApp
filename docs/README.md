@@ -12,3 +12,10 @@ valeriabenedetta.visani@mail.polimi.it
 **Toni Wang**
 toni.wang@mail.polimi.it
 10817365
+
+
+![](docs/README_images/assignment1.png)
+![](docs/README_images/assignment2.png)
+
+![](docs/README_images/example1.png)
+![](docs/README_images/example2.png)
