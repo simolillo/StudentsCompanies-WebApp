@@ -114,7 +114,8 @@
             \\
 			\vspace{1cm}
 			\begin{center}
-            {\color{bluepoli} \bfseries \large{\textsc{Tesi di Laurea Magistrale in\\ \course}}\par}
+            % {\color{bluepoli} \bfseries \large{\textsc{Tesi di Laurea Magistrale in\\ \course}}\par}
+            {\color{bluepoli} \bfseries \large{\textsc{\course}}\par}
 			
             %\end{center}
 			\vspace{1cm}
@@ -133,8 +134,8 @@
 			\vspace*{\fill}
 			\\
 			\begin{minipage}{0.85\textwidth}
-			\color{black}Advisor:\vspace{0.1cm}\\{\bfseries{\advisor}}\vspace{0.25cm}
-			\\
+			% \color{black}Advisor:\vspace{0.1cm}\\{\bfseries{\advisor}}\vspace{0.25cm}
+			% \\
 			Academic Year:\vspace{0.1cm}\\{\bfseries{\academicyear}}
 			\end{minipage}
 	\end{titlepage}
