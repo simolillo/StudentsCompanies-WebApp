@@ -1,4 +1,7 @@
+# Mac generated files
 .DS_store
+
+# LaTex compilation files
 *.acn
 *.aux
 *.bbl
