@@ -258,7 +258,31 @@ notification informs her that Luca will no longer be interning at Innovatech.
 
 This process ensures clear communication and quick action, maintaining the integrity of
 the internship program at Politecnico di Milano.
+\newpage
 \subsection{Domain Class Diagram}
+The class diagram provided below offers a high-level overview of the domains of interest
+for the software implementation.
+The diagram can be divided into three main sections:
+
+The central section contains the main entities related to users: Student, student profile,
+company, proposed interview, and university.
+
+The lower section illustrates the primary interactions between students and companies necessary
+for successfully performing an internship: Preliminary match, selection process, final match,
+and internship. This area also includes important management classes such as SelectionProcessManager
+and InternshipManager.
+
+The upper section displays the main classes related to the recommendation system.
+It includes classes for feedback and preliminary data collection, which are then sent
+to the analysis system to generate recommendations (also represented by a class).
+Finally, this system sends notifications, represented by another class, which connects
+to the user superclass.
+
+\begin{figure} [H]
+    \centering
+    \includegraphics [width=1\linewidth] {ClassDiagram.png}
+    \caption{Class Diagram}
+\end{figure}
 \subsection{State Charts}
 
 \section{Product Functions}
