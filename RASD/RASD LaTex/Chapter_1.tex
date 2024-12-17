@@ -1,17 +1,334 @@
 \chapter{Introductionn}
 
+% //////////////////////////////
+% ------------------------------
 \section{Purpose}
+% ------------------------------
+% //////////////////////////////
 
+The \textit{Students\&Companies (S\&C)} platform bridges the gap between university students seeking internships and companies offering them. It simplifies the process of matching students with internship opportunities based on their skills, experiences, and preferences, as well as companies' requirements and offered benefits.
+
+The software involves three main actors: \textbf{students}, \textbf{companies}, and \textbf{universities}.
+
+\begin{itemize}
+    \item \textbf{Students} use the platform to search and apply for internships, submit their CVs, and receive recommendations tailored to their profiles.
+    \item \textbf{Companies} advertise internships, specify requirements, and manage the selection process for suitable candidates.
+    \item \textbf{Universities} monitor the execution of internships and handle complaints or issues that may arise.
+\end{itemize}
+
+S\&C features a \textbf{recommendation system} that matches students and internships using mechanisms ranging from keyword-based searches to advanced statistical analyses. The platform also facilitates communication, supports the selection process, and tracks internship progress to ensure transparency for all involved parties.
+
+The main objectives of the system can be summarized as follows:
+
+\begin{itemize}
+    \item \textbf{G1)} The system allows students to proactively look for internships.
+    \item \textbf{G2)} The system allows companies to advertise the internships that they offer.
+    \item \textbf{G3)} The system recommends students suitable internships based on their CVs and recommends companies student CVs corresponding to their needs.
+    \item \textbf{G4)} The system enables students and companies to initiate and manage the selection process.
+    \item \textbf{G5)} The system facilitates communication between the two parties during the internship.
+    \item \textbf{G6)} The system allows universities to monitor internships and handle complaints.
+\end{itemize}
+
+% //////////////////////////////
+% ------------------------------
 \section{Scope}
-\subsection{World Phenomena}
-\subsection{Machine Phenomena}
-\subsection{Shared Phenomena}
+% ------------------------------
+% //////////////////////////////
 
+The \textit{Students\&Companies (S\&C)} platform is designed to address the challenge of connecting university students seeking internship opportunities with companies offering them. By streamlining the entire internship lifecycle, S\&C simplifies the processes of advertisement, recommendation, selection, and management of internships, creating value for students, companies, and universities alike.
+
+The platform allows students to actively search for internships by browsing opportunities advertised by companies. Students can upload their CVs, highlighting their skills, experiences, and attitudes, and receive tailored recommendations based on the relevance of their profiles to available internships. These recommendations are generated using mechanisms that range from basic keyword searches to advanced statistical analyses. This ensures that students are made aware of internships that align with their skills and preferences while helping companies identify candidates who meet their requirements. Beyond recommendations, students can also take the initiative to directly apply for internships of interest.
+
+For companies, S\&C serves as a centralized platform to advertise internships and specify essential details such as the application domain, required tasks, adopted technologies, and offered benefits, including tangible incentives like stipends or intangible elements such as mentorship and training. Through its recommendation system, the platform automatically identifies and suggests student CVs that best fit the company’s specified needs. Once a mutual interest is established, the platform facilitates the subsequent selection process by supporting interview scheduling, managing communication between companies and students, and even offering tools like structured questionnaires to streamline evaluations.
+
+Universities play a monitoring role within the system. Given their responsibility to oversee internships and ensure their educational value, universities can track ongoing internships through the platform. They are empowered to handle complaints or intervene in cases where conflicts arise, including managing serious issues that might necessitate the interruption of an internship. This oversight mechanism helps maintain a standard of quality and accountability across all internships facilitated by the platform.
+
+The platform also supports communication and transparency throughout the internship process. Once students and companies establish contact, S\&C provides mechanisms to manage interviews and selections, ensuring that both parties remain engaged and informed. During the internship, the platform allows ongoing communication between students and companies, helping address concerns, report progress, and resolve issues as they arise. Additionally, the system collects feedback from all parties, which serves as valuable input for refining recommendations and improving the overall efficiency of the platform.
+
+A critical aspect of S\&C is its focus on tracking and monitoring the outcomes of internships. Companies and students can provide updates and feedback regarding the progress of ongoing internships, ensuring transparency and accountability for all actors involved. This information not only helps universities oversee the process but also contributes to the continuous improvement of the platform’s recommendation and matching mechanisms.
+
+Overall, the \textit{Students\&Companies} platform integrates proactive internship searching, intelligent recommendation, seamless communication, and effective monitoring to create an ecosystem that benefits students, companies, and universities. By simplifying each phase of the internship lifecycle, S\&C promotes meaningful matches between students and opportunities, fostering better experiences and outcomes for all stakeholders involved.
+
+% //////////////////////////////
+% ------------------------------
+\subsection{World, Machine and Shared Phenomena}
+% ------------------------------
+% //////////////////////////////
+
+This section summarizes the previous description into lists of phenomena (events) that occur in the
+world of interest for the system to be developed. Phenomena have to be interpreted simply as events
+occurring in the whole domain that is being analyzed in the document, so they have been stripped of
+any constraint (that will be better specified in the requirements section).
+
+Phenomena can be divided into:
+\begin{itemize}
+    \item \textbf{World phenomena:} events happening outside the system and on which the system has no control.
+    \item \textbf{Machine phenomena:} events happening internally in the system, independent from the outside world.
+    \item \textbf{Shared phenomena:} events that have an influence on both the system and the world surrounding it. Usually they are further split into two classes:
+    \begin{itemize}
+        \item \textbf{World controlled shared phenomena:} events initiated by entities of the world that are impactful for the system.
+        \item \textbf{Machine controlled shared phenomena:} events triggered or initiated by the system with a relevant impact in the domain in which the system works.
+    \end{itemize}
+\end{itemize}
+
+% //////////////////////////////
+% ------------------------------
+\subsubsection{World Phenomena}
+% ------------------------------
+% //////////////////////////////
+
+\begin{itemize}
+    \item \textbf{WP1)} \textbf{Student} wants to begin an internship.
+    \item \textbf{WP2)} \textbf{Student} writes their CV.
+    \item \textbf{WP3)} \textbf{Company} engages in the development and execution of projects.
+    \item \textbf{WP4)} \textbf{Company} aims to present and showcase their projects.
+    \item \textbf{WP5)} \textbf{Company} needs staff.
+    \item \textbf{WP6)} \textbf{University} wants to monitor the situation of its students.
+\end{itemize}
+
+% //////////////////////////////
+% ------------------------------
+\subsubsection{Machine Phenomena}
+% ------------------------------
+% //////////////////////////////
+
+\begin{itemize}
+    \item \textbf{MP1)} \textbf{The system} collects data of students' CV, analyzes them and identifies a company that may be suitable for the student.
+    \item \textbf{MP2)} \textbf{The system} collects data of internships, analyzes them and identifies a student that may be suitable for the company.
+    \item \textbf{MP3)} \textbf{The system} collects data regarding internships and feedback from both parties to carry out statistical analyzes in order to refine the recommendation process.
+    \item \textbf{MP4)} \textbf{The system} is able to provide suggestions both to companies and to students regarding how to make their submissions.
+    \item \textbf{MP5)} \textbf{The system} supports the selection process by helping manage (set up, conduct, etc.) interviews and also allows to finalize the selections.
+\end{itemize}
+
+% //////////////////////////////
+% ------------------------------
+\subsubsection{World Controlled Shared Phenomena}
+% ------------------------------
+% //////////////////////////////
+
+\begin{itemize}
+    \item \textbf{WSP1)} \textbf{Student} creates their personal profile on the platform uploading their personal information.
+    \item \textbf{WSP2)} \textbf{Student} uploads his/her CV.
+    \item \textbf{WSP3)} \textbf{Student} applies for an available internship.
+    \item \textbf{WSP4)} \textbf{Company} creates its personal profile.
+    \item \textbf{WSP5)} \textbf{Company} uploads on the platform an available project comprehensive of all the details such as (application domain, tasks to be performed, relevant adopted technologies-if any, benefits, mentorship).
+    \item \textbf{WSP6)} \textbf{University} creates its own profile on the platform.
+    \item \textbf{WSP7)} \textbf{Company} accepts the \textbf{Student} for the interview.
+    \item \textbf{WSP8)} \textbf{Student} signs the contract.
+    \item \textbf{WSP9)} \textbf{Company} signs the contract.
+    \item \textbf{WSP10)} \textbf{Company} starts selection process.
+    \item \textbf{WSP11)} \textbf{Company} finalizes the selection.
+    \item \textbf{WSP12)} \textbf{Student} communicates in the provided space.
+    \item \textbf{WSP13)} \textbf{Company} communicates in the provided space.
+    \item \textbf{WSP14)} \textbf{University} reads complaints.
+    \item \textbf{WSP15)} \textbf{University} requires the interruption of the internship.
+\end{itemize}
+
+% //////////////////////////////
+% ------------------------------
+\subsubsection{Machine Controlled Shared Phenomena}
+% ------------------------------
+% //////////////////////////////
+
+\begin{itemize}
+    \item \textbf{MSP1)} \textbf{The system} notifies the \textbf{Student} if it identifies an internship that matches his skills.
+    \item \textbf{MSP2)} \textbf{The system} notifies the \textbf{Company} if it identifies a \textbf{Student} who matches the requirements for the internship.
+    \item \textbf{MSP3)} \textbf{The system} collects feedback from \textbf{Students} and \textbf{Companies} during the recommendation process.
+    \item \textbf{MSP4)} \textbf{The system} notifies the \textbf{University} of a complaint.
+\end{itemize}
+
+% //////////////////////////////
+% ------------------------------
 \section{Definitions, Acronyms, Abbreviations}
+% ------------------------------
+% //////////////////////////////
+
+% //////////////////////////////
+% ------------------------------
 \subsection{Definitions}
+% ------------------------------
+% //////////////////////////////
+
+A brief list of the most meaningful and relevant terms and synonyms used in this document is reported
+here, in order to make reading process smoother and clearer:
+
+\begin{longtable}{l p{15cm}}
+\caption{Abbreviations used in the project.} \label{tab:abbreviations} \\
+\hline
+\textbf{Abbreviation} & \textbf{Definition} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Abbreviation} & \textbf{Definition} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+RASD & Requirements And Specification Document \\
+CKB & CodeKataBattle \\
+CV & Curriculum Vitae \\
+API & Application Programming Interface \\
+UI & User Interface \\
+UX & User Experience \\
+HTML & HyperText Markup Language \\
+CSS & Cascading Style Sheets \\
+JSON & JavaScript Object Notation \\
+SQL & Structured Query Language \\
+GitHub & GitHub (a version control platform) \\
+\end{longtable}
+
+% ---------------
+
+\begin{longtable}{@{} l p{1\textwidth} @{}}
+
+\textbf{Term} & \textbf{Definition} \\
+\hline
+\endfirsthead
+
+\textbf{Term} & \textbf{Definition} \\
+\hline
+\endhead
+
+\\
+RASD & Requirements And Specification Document \vspace{5mm} \\
+CKB & CodeKataBattle \vspace{5mm} \\
+CV & Curriculum Vitae \vspace{5mm} \\
+API & Application Programming Interface \vspace{5mm} \\
+UI & User Interface \vspace{5mm} \\
+UX & User Experience \vspace{5mm} \\
+HTML & HyperText Markup Language \vspace{5mm} \\
+CSS & Cascading Style Sheets \vspace{5mm} \\
+JSON & JavaScript Object Notation \vspace{5mm} \\
+SQL & Structured Query Language \vspace{5mm} \\
+GitHub & GitHub (a version control platform) \vspace{5mm} \\
+\end{longtable}
+
+% ---------------------
+
+\renewcommand{\arraystretch}{1.5} % Optional: increases row height for readability
+
+\begin{longtable}{@{} l p{\textwidth} @{}}
+\textbf{Term} & \textbf{Definition} \\
+\hline
+\endfirsthead
+
+\textbf{Term} & \textbf{Definition} \\
+\hline
+\endhead
+
+RASD & Requirements And Specification Document \\
+CKB & CodeKataBattle \\
+CV & Curriculum Vitae \\
+API & Application Programming Interface \\
+UI & User Interface \\
+UX & User Experience \\
+HTML & HyperText Markup Language \\
+CSS & Cascading Style Sheets \\
+JSON & JavaScript Object Notation \\
+SQL & Structured Query Language \\
+GitHub & GitHub (a version control platform) \\
+\end{longtable}
+
+\end{document}
+
+
+
+
+
+
+
+
+% //////////////////////////////
+% ------------------------------
 \subsection{Acronyms}
-\subsection{Abbreviations}
+% ------------------------------
+% //////////////////////////////
 
+A list of acronyms used throughout the document for simplicity and readability:
+
+\begin{enumerate}
+    \item RASD - Requirements And Specification Document
+    \item S\&C - Students\&Companies
+\end{enumerate}
+
+
+% //////////////////////////////
+% ------------------------------
 \section{Reference Documents}
+% ------------------------------
+% //////////////////////////////
 
+Here’s a list of reference documents that have been used in order to shape the Requirements Analysis and Specification Document of the \textit{Students\&Companies} system. In the following, all external sources of information that have contributed to the design of this document are mentioned.
+
+\begin{enumerate}
+    \item Stakeholders’ specification provided by the R\&DD assignment for the Software Engineering II course at Politecnico Di Milano for the year 2024/2025.
+    \item ``The World and the Machine'', by Michael Jackson, 1995. \\
+    Link: \url{https://ieeexplore.ieee.org/document/5071113}
+    \item ``29148-2018, ISO/IEC/IEEE International Standard, Systems and software engineering, Life cycle processes, Requirements engineering'', by IEEE, 2018. \\
+    Link: \url{https://ieeexplore.ieee.org/document/8559686}
+    \item UML specifications, version 2.5.1. \\
+    Link: \url{https://www.omg.org/spec/UML/2.5.1/About-UML}
+    \item Alloy documentation, version 6.1.0.8. \\
+    Link: \url{https://alloy.readthedocs.io/en/latest/}
+\end{enumerate}
+
+
+% //////////////////////////////
+% ------------------------------
 \section{Document Structure}
+% ------------------------------
+% //////////////////////////////
+
+This Requirements and Analysis Specification Document is composed of four major sections.
+
+The first one is the \textbf{Introduction}, whose main objective is to introduce the reader to the domain
+of interest for the system to be developed, mainly using natural language to describe all the most
+fundamental actors and elements involved in the interactions between the system and the outer world. \\
+The \textbf{Purpose} provides the definition of the main goals for the application. \\
+The \textbf{Scope} is dedicated to reprocessing the original stakeholders’ requirements in a new high-level
+description of the domain of interest that aims at being as unambiguous and clear as possible. All the
+most meaningful actors of the world in which the system lives are mentioned and their role explained.
+Besides, the interactions between these actors and the system are touched at a high-level to clarify
+what will come next in the document and to justify some of the design choices that are taken in the
+following paragraphs of the RASD. From the natural language description of the system, world and
+machine phenomena can be derived and in fact, they come immediately afterwards. These can be
+interpreted as a schematisation of the previous description in which only the events occurring in the
+domain of interest are presented (see ”The World and the Machine”, by Michael Jackson, 1995 for
+more information). \\
+In the \textbf{Definitions} subsection it is possible to find specifications on terminology and vocabulary terms
+used throughout the document, so that ambiguity shouldn’t emerge from reading. From the table
+provided in this part, synonyms for words employed in the RASD are also listed.
+
+The second major section of this document is the \textbf{Overall Description}. This part of the RASD has
+several goals, which are achieved thanks to its subsections. \\
+The first one is dedicated to scenarios. The \textbf{Scenarios} subsection aims at validating the stakeholders’
+needs by illustrating concrete instances and examples of interactions with the system to be developed. \\
+The \textbf{Domain Class Diagram} and \textbf{State Charts} are UML diagrams that provide a graphical visual-
+ization of the world of interest, consistently with the Introduction section. \\
+In the \textbf{Product Functions} chapter, the functional requirements of the system are listed in a schematic
+way. This analysis derives as a consequence of all the previous sections, in which the world of inter-
+est has been described and accurately observed in order to understand what requirements the system
+should meet. \\
+Finally, the \textbf{Assumptions, Dependencies and Constraints} subsection is dedicated to listing all the
+events and elements of the domain which are not under the system’s control or which the system has
+some dependency over.
+
+The third relevant part of this RASD is \textbf{Specific Requirements}, which is more concerned about
+turning the functional requirements listed in the Product Functions section into schematic and graph-
+ical representations. \\
+The \textbf{External Interface Requirements} subsection deals with the interfaces and modes of interactions
+between the system and external users or other software products. \\
+The \textbf{Functional Requirements} chapter offers a schematic view of the functional requirements listed
+in the Product Functions section, by means of use cases, use case diagrams and sequence diagrams.
+A mapping between these graphical representations and the associated requirements is also provided. \\
+The part named \textbf{Design Constraints} specifies any constraint that the system has to respect when be-
+ing developed, while the last section called \textbf{Software System Attributes} lists a series of qualities
+that the software to be implemented must have and the way to achieve them (for instance reliability,
+availability...).
+
+The final section called \textbf{Alloy} provides the study of the system through Alloy, which is a tool for
+analyzing systems and seeing if they are designed correctly.
