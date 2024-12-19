@@ -14,8 +14,10 @@
 %--------------------------------------------------------------------------
 %	HANDLING THE STYLE OF THE THESIS
 %--------------------------------------------------------------------------
-\LoadClass[12pt, twoside]{book} % 12 pt font, two-sided book style
-\RequirePackage[a4paper, includehead, headheight=0.6cm, inner=3.0cm ,outer=2.0cm, top=2.5cm, bottom=2.5cm]{geometry}
+% \LoadClass[12pt, twoside]{book} % 12 pt font, two-sided book style
+% \RequirePackage[a4paper, includehead, headheight=0.6cm, inner=3.0cm ,outer=2.0cm, top=2.5cm, bottom=2.5cm]{geometry}
+\LoadClass[12pt, oneside]{book} % 12 pt font, one-sided book style
+\RequirePackage[a4paper, includehead, headheight=0.6cm, inner=2.5cm ,outer=2.5cm, top=2.5cm, bottom=2.5cm]{geometry}
 
 \RequirePackage[bf, font=onehalfspacing]{caption} % caption: FIG in bold, 1.5 line spacing in figure and table captions
 \newcommand{\thesisspacing}{\onehalfspacing}
@@ -31,8 +33,10 @@
     \latexchapter{#1}
     \renewcommand{\headrulewidth}{0pt} %removing the horizontal line in the header
     %\addcontentsline{toc}{chapter}{#1} % Also adds the chapter name to the Contents
-    \fancyhead[LO, RE]{ \textbf{\thechapter\hsp{|   }\hsp \leftmark}}% Header
-    \fancyhead[LE, RO]{\thepage}
+    % \fancyhead[LO, RE]{ \textbf{\thechapter\hsp{|   }\hsp \leftmark}}% Header
+    % \fancyhead[LE, RO]{\thepage}
+	\fancyhead[L]{ \textbf{\thechapter\hsp{|   }\hsp \leftmark}}% Header
+    \fancyhead[R]{}
     \vspace{-1cm}
 }
 
@@ -40,10 +44,12 @@
     \cleardoublepage % To make sure the previous headers are passed
     \phantomsection % To help hyperref link to the right page
     \latexchapter*{#1} 
-   \renewcommand{\headrulewidth}{0pt} %removing the horizontal line in the header
+    \renewcommand{\headrulewidth}{0pt} %removing the horizontal line in the header
     \addcontentsline{toc}{chapter}{#1} % Also adds the chapter name to the Contents
-    \fancyhead[LO, RE]{ \bfseries \textcolor{bluepoli}{|   } #1} % Header \textbf{\leftmark} \hspace{1mm}}
-    \fancyhead[LE, RO]{\thepage}
+    % \fancyhead[LO, RE]{ \bfseries \textcolor{bluepoli}{|   } #1} % Header \textbf{\leftmark} \hspace{1mm}}
+    % \fancyhead[LE, RO]{\thepage}
+	\fancyhead[L]{ \bfseries \textcolor{bluepoli}{|   } #1} % Header
+    \fancyhead[R]{}
     \vspace{-1cm}
 }
 
