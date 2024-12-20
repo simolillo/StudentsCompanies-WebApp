@@ -1,8 +1,8 @@
 -- (lexicographic order)
 
-// --------------------------------------------------
+// ----------------------------------------------
 // SIGNATURES //
-// --------------------------------------------------
+// ----------------------------------------------
 
 sig Company extends User {
     intershipsOffered: disj set Internship
@@ -31,9 +31,10 @@ abstract sig User {
 
 sig Username {}
 
-// --------------------------------------------------
+
+// ----------------------------------------------
 // ENUMERATIONS //
-// --------------------------------------------------
+// ----------------------------------------------
 
 enum Boolean {
     True,
@@ -47,24 +48,10 @@ enum StudentStatus {
     FinalMatch
 }
 
-// --------------------------------------------------
+
+// ----------------------------------------------
 // FACTS //
-// --------------------------------------------------
-
-fact internshipIffMatched {
-    all s: Student |
-        always (
-            s.internship = none iff s.status = Searching
-        )
-}
-
-fact ifSearchingNoComplaint {
-    all s: Student |
-        always (
-            s.status = Searching implies
-            s.complaintPresence = False
-        )
-}
+// ----------------------------------------------
 
 fact ifFinalMatchOnceSelectionProcess {
     all s: Student |
@@ -82,11 +69,26 @@ fact ifPreliminaryMatchOnceSearching {
         )
 }
 
+fact ifSearchingNoComplaint {
+    all s: Student |
+        always (
+            s.status = Searching implies
+            s.complaintPresence = False
+        )
+}
+
 fact ifSelectionProcessOncePreliminaryMatch {
     all s: Student |
         always (
             s.status = SelectionProcess implies
             once s.status = PreliminaryMatch    
+        )
+}
+
+fact internshipIffMatched {
+    all s: Student |
+        always (
+            s.internship = none iff s.status = Searching
         )
 }
 
@@ -113,9 +115,25 @@ fact studentBehaviour {
 }
 
 
-// --------------------------------------------------
+// ----------------------------------------------
 // PREDICATES //
-// --------------------------------------------------
+// ----------------------------------------------
+
+pred companyComplains [s: Student] {
+    s.complaintPresence = False and
+    s.complaintPresence' = True and
+    statusUnchanged[s] and internshipUnchanged[s]
+}
+
+pred companyRemovesComplaint [s: Student] {
+    s.complaintPresence = True and
+    s.complaintPresence' = False
+    statusUnchanged[s] and internshipUnchanged[s]
+}
+
+pred complaintPresenceUnchanged [s: Student] {
+    s.complaintPresence' = s.complaintPresence
+}
 
 pred doNothing [s: Student] {
     statusUnchanged[s]
@@ -125,10 +143,6 @@ pred doNothing [s: Student] {
 
 pred internshipUnchanged [s: Student] {
     s.internship' = s.internship
-}
-
-pred complaintPresenceUnchanged [s: Student] {
-    s.complaintPresence' = s.complaintPresence
 }
 
 pred statusUnchanged [s: Student] {
@@ -158,18 +172,6 @@ pred studentStatusUpgrade [s: Student] {
     internshipUnchanged[s] and complaintPresenceUnchanged[s])
 }
 
-pred companyComplains [s: Student] {
-    s.complaintPresence = False and
-    s.complaintPresence' = True and
-    statusUnchanged[s] and internshipUnchanged[s]
-}
-
-pred companyRemovesComplaint [s: Student] {
-    s.complaintPresence = True and
-    s.complaintPresence' = False
-    statusUnchanged[s] and internshipUnchanged[s]
-}
-
 pred studentNotPassingSelectionProcess [s: Student] {
     s.status = SelectionProcess
     s.status' = Searching
@@ -185,39 +187,32 @@ pred universityTerminatesInternship [s: Student] {
 }
 
 
-
-// --------------------------------------------------
+// ----------------------------------------------
 // RUN //
-// --------------------------------------------------
+// ----------------------------------------------
+
+// pred complaintTransition [s: Student] {
+//     s.complaintPresence = False
+//     s.complaintPresence''' = True
+// }
+// run complaintTransition for 10 but 4 steps
+
+// pred studentProgression [s: Student] {
+//     s.status = Searching
+//     s.status' = PreliminaryMatch
+//     s.status'' = SelectionProcess
+//     s.complaintPresence''' = True
+//     s.status'''' = FinalMatch
+//     s.complaintPresence''''' = False
+//     s.complaintPresence'''''' = True
+//     s.status''''''' = Searching
 
 
+//     #University = 1
+//     #Internship = 1
+//     #Company = 1
+//     #Student = 1
+// }
+// run studentProgression for 10
 
-
-pred complaintTransition [s: Student] {
-    s.complaintPresence = False
-    s.complaintPresence''' = True
-}
-run complaintTransition for 10 but 4 steps
-
-
-
-pred studentProgression [s: Student] {
-    s.status = Searching
-    s.status' = PreliminaryMatch
-    s.status'' = SelectionProcess
-    s.complaintPresence''' = True
-    s.status'''' = FinalMatch
-    s.complaintPresence''''' = False
-    s.complaintPresence'''''' = True
-    s.status''''''' = Searching
-
-
-    #University = 1
-    #Internship = 1
-    #Company = 1
-    #Student = 1
-}
-run studentProgression for 10
-
-
-run {} for 3 steps
+// run {} for 3 steps
