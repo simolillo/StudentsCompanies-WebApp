@@ -216,3 +216,29 @@ pred universityTerminatesInternship [s: Student] {
 // run studentProgression for 10
 
 // run {} for 3 steps
+
+// pred show {
+//     #Student = 2
+//     #Company = 2
+//     #University = 2
+//     #Internship = 5
+// }
+// run show for 30
+
+pred complexWorld {
+    // Create two students
+    one s1, s2: Student |
+        // Ensure the first student is in the FinalMatch status
+        s1.status = FinalMatch and
+        s1.internship = some Internship and
+        s1.complaintPresence = False and
+
+        // Ensure the second student is in the PreliminaryMatch status
+        s2.status = PreliminaryMatch and
+        s2.internship = some Internship and
+        s2.complaintPresence = False and
+
+        // The students should be in distinct roles
+        s1 != s2
+}
+run complexWorld
