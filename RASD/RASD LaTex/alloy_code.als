@@ -197,23 +197,23 @@ pred universityTerminatesInternship [s: Student] {
 // }
 // run complaintTransition for 10 but 4 steps
 
-// pred studentProgression [s: Student] {
-//     s.status = Searching
-//     s.status' = PreliminaryMatch
-//     s.status'' = SelectionProcess
-//     s.complaintPresence''' = True
-//     s.status'''' = FinalMatch
-//     s.complaintPresence''''' = False
-//     s.complaintPresence'''''' = True
-//     s.status''''''' = Searching
+pred studentProgression [s: Student] {
+    s.status = Searching
+    s.status' = PreliminaryMatch
+    s.status'' = SelectionProcess
+    s.complaintPresence''' = True
+    s.status'''' = FinalMatch
+    s.complaintPresence''''' = False
+    s.complaintPresence'''''' = True
+    s.status''''''' = Searching
 
 
-//     #University = 1
-//     #Internship = 1
-//     #Company = 1
-//     #Student = 1
-// }
-// run studentProgression for 10
+    #University = 1
+    #Internship = 1
+    #Company = 1
+    #Student = 2
+}
+run studentProgression for 10
 
 // run {} for 3 steps
 
@@ -224,21 +224,3 @@ pred universityTerminatesInternship [s: Student] {
 //     #Internship = 5
 // }
 // run show for 30
-
-pred complexWorld {
-    // Create two students
-    one s1, s2: Student |
-        // Ensure the first student is in the FinalMatch status
-        s1.status = FinalMatch and
-        s1.internship = some Internship and
-        s1.complaintPresence = False and
-
-        // Ensure the second student is in the PreliminaryMatch status
-        s2.status = PreliminaryMatch and
-        s2.internship = some Internship and
-        s2.complaintPresence = False and
-
-        // The students should be in distinct roles
-        s1 != s2
-}
-run complexWorld
