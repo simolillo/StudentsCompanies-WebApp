@@ -128,10 +128,10 @@
 			{{\singlespacing \huge \bfseries \thesistitle \par}}	
 			\vspace{1.5 cm}
             \end{center}
-			{\color{black} Author:\vspace{0.1cm}\\
+			{\color{black} Authors:\vspace{0.1cm}\\
             {\large \bfseries{\name}}\vspace{0.5cm}\\
             \normalsize
-            Student ID:\vspace{0.1cm}\\
+            Students ID:\vspace{0.1cm}\\
             \bfseries{\ID}
             }
             %Student ID: \textbf{{\ID}}
