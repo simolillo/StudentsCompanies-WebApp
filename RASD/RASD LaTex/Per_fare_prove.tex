@@ -13,19 +13,157 @@ Questo aggiunto dopo da VS code direttamente.
 modifica in chimata
 
 
-    \begin{table}[h!]
-        \centering
-        \begin{tabularx}{\textwidth}{XXXX} % La tabella ora si espande alla larghezza della pagina
-        \toprule
-        \textbf{Requirement} & \textbf{Goal} & \textbf{UseCase} & \textbf{SequenceDiagram} \\
-        \midrule
-        R1.1 & G1 & UC2    & SD2  \\
-        R1.2 & G1 & UC3    & SD3  \\
-        R1.3 & G1 & UC6    & SD6  \\
-        \bottomrule
-        \end{tabularx}
-        \caption{Requirements Mapping}
-        \label{tab:requirements}
-    \end{table}
 
+tabella tipo 1:
+
+\begin{longtable}{cccc}
+    \caption{Requirements Mapping} \\
+    \toprule
+    \textbf{Requirement} & \textbf{Goal} & \textbf{UseCase} & \textbf{SequenceDiagram} \\
+    \midrule
+    \endfirsthead
+    
+    \toprule
+    \textbf{Requirement} & \textbf{Goal} & \textbf{UseCase} & \textbf{SequenceDiagram} \\
+    \midrule
+    \endhead
+    
+    \bottomrule
+    \endfoot
+    
+    R1.1 & G1 & UC2    & SD2  \\
+    R1.2 & G1 & UC3    & SD3  \\
+    R1.3 & G1 & UC6    & SD6  \\
+    R1.4 & G1 & UC7-8  & SD7-8 \\
+    R1.5 & G1 & UC6    & SD6  \\
+    R1.6 & G1 & UC4    & SD4  \\
+    R1.7 & G1 & UC7-8  & SD7-8 \\
+    R1.8 & G1 & UC7-8  & SD7-8 \\
+    R1.9 & G1 & UC9-10 & SD9-10 \\
+    R1.10 & G1 & UC11  & SD11 \\
+    R1.11 & G1 & UC13  & SD13 \\
+    R1.12 & G1 & UC14  & SD14 \\
+    R2.1 & G2 & UC1    & SD1  \\
+    R2.2 & G2 & UC3    & SD3  \\
+    R2.3 & G2 & UC5    & SD5  \\
+    R2.4 & G2 & UC4    & SD4  \\
+    R2.5 & G2 & UC13   & SD13 \\
+    R2.6 & G2 & UC12   & SD12 \\
+    R1.7 & G1 & UC7-8  & SD7-8 \\
+    R1.8 & G1 & UC7-8  & SD7-8 \\
+    R1.9 & G1 & UC9-10 & SD9-10 \\
+    R1.10 & G1 & UC11  & SD11 \\
+    R1.11 & G1 & UC13  & SD13 \\
+    R1.12 & G1 & UC14  & SD14 \\
+    R2.1 & G2 & UC1    & SD1  \\
+    R2.2 & G2 & UC3    & SD3  \\
+    R1.7 & G1 & UC7-8  & SD7-8 \\
+    R1.8 & G1 & UC7-8  & SD7-8 \\
+    R1.9 & G1 & UC9-10 & SD9-10 \\
+    R1.10 & G1 & UC11  & SD11 \\
+    R1.11 & G1 & UC13  & SD13 \\
+    R1.12 & G1 & UC14  & SD14 \\
+    R2.1 & G2 & UC1    & SD1  \\
+    R2.2 & G2 & UC3    & SD3  \\
+    R1.7 & G1 & UC7-8  & SD7-8 \\
+    R1.8 & G1 & UC7-8  & SD7-8 \\
+    R1.9 & G1 & UC9-10 & SD9-10 \\
+    R1.10 & G1 & UC11  & SD11 \\
+    R1.11 & G1 & UC13  & SD13 \\
+    R1.12 & G1 & UC14  & SD14 \\
+    R2.1 & G2 & UC1    & SD1  \\
+    R2.2 & G2 & UC3    & SD3  \\
+    R1.7 & G1 & UC7-8  & SD7-8 \\
+    R1.8 & G1 & UC7-8  & SD7-8 \\
+    R1.9 & G1 & UC9-10 & SD9-10 \\
+    R1.10 & G1 & UC11  & SD11 \\
+    R1.11 & G1 & UC13  & SD13 \\
+    R1.12 & G1 & UC14  & SD14 \\
+    R2.1 & G2 & UC1    & SD1  \\
+    R2.2 & G2 & UC3    & SD3  \\
+    R1.7 & G1 & UC7-8  & SD7-8 \\
+    R1.8 & G1 & UC7-8  & SD7-8 \\
+    R1.9 & G1 & UC9-10 & SD9-10 \\
+    R1.10 & G1 & UC11  & SD11 \\
+    R1.11 & G1 & UC13  & SD13 \\
+    R1.12 & G1 & UC14  & SD14 \\
+    R2.1 & G2 & UC1    & SD1  \\
+    R2.2 & G2 & UC3    & SD3  \\
+    % Aggiungi altre righe
+    \end{longtable}
+    
+    Tabella tipo 2:
+
+    \begin{longtable}{|p{0.2\textwidth}|p{0.2\textwidth}|p{0.3\textwidth}|p{0.3\textwidth}|} % Colonne larghe personalizzate
+    \hline
+    \textbf{Requirement} & \textbf{Goal} & \textbf{UseCase} & \textbf{SequenceDiagram} \\
+    \hline
+    \endfirsthead % Intestazione ripetuta in ogni pagina
+    \hline
+    \textbf{Requirement} & \textbf{Goal} & \textbf{UseCase} & \textbf{SequenceDiagram} \\
+    \hline
+    \endhead
+    
+    \hline
+    \endfoot
+    
+    \hline
+    \endlastfoot
+    
+    R1.1 & G1 & UC2    & SD2  \\
+    R1.2 & G1 & UC3    & SD3  \\
+    R1.3 & G1 & UC6    & SD6  \\
+    R1.4 & G1 & UC7-8  & SD7-8 \\
+    R1.5 & G1 & UC6    & SD6  \\
+    R1.6 & G1 & UC4    & SD4  \\
+    R1.7 & G1 & UC7-8  & SD7-8 \\
+    R1.8 & G1 & UC7-8  & SD7-8 \\
+    R1.9 & G1 & UC9-10 & SD9-10 \\
+    R1.10 & G1 & UC11  & SD11 \\
+    R1.11 & G1 & UC13  & SD13 \\
+    R1.12 & G1 & UC14  & SD14 \\
+    R2.1 & G2 & UC1    & SD1  \\
+    R2.2 & G2 & UC3    & SD3  \\
+    R2.3 & G2 & UC5    & SD5  \\
+    R2.4 & G2 & UC4    & SD4  \\
+    R2.5 & G2 & UC13   & SD13 \\
+    R2.6 & G2 & UC12   & SD12 \\
+    R1.7 & G1 & UC7-8  & SD7-8 \\
+    R1.8 & G1 & UC7-8  & SD7-8 \\
+    R1.9 & G1 & UC9-10 & SD9-10 \\
+    R1.10 & G1 & UC11  & SD11 \\
+    R1.11 & G1 & UC13  & SD13 \\
+    R1.12 & G1 & UC14  & SD14 \\
+    R2.1 & G2 & UC1    & SD1  \\
+    R2.2 & G2 & UC3    & SD3  \\
+    R2.3 & G2 & UC5    & SD5  \\
+    R2.4 & G2 & UC4    & SD4  \\
+    R2.5 & G2 & UC13   & SD13 \\
+    R1.7 & G1 & UC7-8  & SD7-8 \\
+    R1.8 & G1 & UC7-8  & SD7-8 \\
+    R1.9 & G1 & UC9-10 & SD9-10 \\
+    R1.10 & G1 & UC11  & SD11 \\
+    R1.11 & G1 & UC13  & SD13 \\
+    R1.12 & G1 & UC14  & SD14 \\
+    R2.1 & G2 & UC1    & SD1  \\
+    R2.2 & G2 & UC3    & SD3  \\
+    R2.3 & G2 & UC5    & SD5  \\
+    R2.4 & G2 & UC4    & SD4  \\
+    R2.5 & G2 & UC13   & SD13 \\
+    R1.7 & G1 & UC7-8  & SD7-8 \\
+    R1.8 & G1 & UC7-8  & SD7-8 \\
+    R1.9 & G1 & UC9-10 & SD9-10 \\
+    R1.10 & G1 & UC11  & SD11 \\
+    R1.11 & G1 & UC13  & SD13 \\
+    R1.12 & G1 & UC14  & SD14 \\
+    R2.1 & G2 & UC1    & SD1  \\
+    R2.2 & G2 & UC3    & SD3  \\
+    R2.3 & G2 & UC5    & SD5  \\
+    R2.4 & G2 & UC4    & SD4  \\
+    R2.5 & G2 & UC13   & SD13 \\
+    % Aggiungi altre righe come necessario
+    
+    \end{longtable}
         
+
+
