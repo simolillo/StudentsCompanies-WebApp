@@ -16,9 +16,7 @@ The Politecnico di Milano has decided to rely on the Student\&Comapny platform t
 find an internship. 
 
 Marco opens the S\&C website on his laptop and is greeted by a clean and intuitive login interface.
-The platform prompts him to log in using his university credentials. He clicks on the "Login for Students"
-button, which redirects him to his university’s authentication portal. Marco enters his student ID
-and password, then confirms his identity.  
+The platform prompts him to log in page. Marco enters his credentalites and then confirms.  
 
 After successfully logging in, Marco is taken to his personalized dashboard. Here, he can immediately
 see options to upload his CV, browse internship opportunities, and explore the system's features, such
@@ -30,9 +28,8 @@ in AI solutions. TechCorp has recently started offering internships to attract a
 and Elena wants to use the Students\&Companies (S\&C) platform to advertise their new openings.  
 
 Elena opens the S\&C website on her office computer. The homepage greets her with a login interface.
-Since TechCorp already has a registered account on the platform, Elena clicks on the "Login for
-Companies" button. She is prompted to enter her company email and password. After filling in her
-credentials and completing a two-factor authentication step, Elena successfully logs in.  
+After filling in her
+credentials, Elena successfully logs in.  
 
 She is directed to TechCorp’s company dashboard. Here, she can view an overview of her active
 internship postings, check pending student applications, and explore suggestions for refining
@@ -44,8 +41,7 @@ internships of students across various departments. The University of Bologna ha
 to rely on the Student\&Comapny platform to help its students find an internship.
 
 Laura navigates to the S\&C platform website and is presented with the login interface.
-She selects the "Login for Universities" option, which prompts her to enter her institutional
-credentials. After typing in her university email and password, she successfully logs in and is
+She inserts her credentialities, she successfully logs in and she is
 directed to the university-specific dashboard.  
 
 On the dashboard, Laura can see a comprehensive overview of the internships involving students
@@ -57,7 +53,7 @@ Giulia is a computer science student at the University of Florence and has recen
 created an account on the Students\&Companies (S\&C) platform. After logging in, she decides to update her
 profile to increase her chances of finding an internship that matches her skills and interests.  
 
-From the dashboard, Giulia navigates to the "Profile Settings" section. Here, she updates
+From the profile page, Giulia navigates to the "Modify Profile" section. Here, she updates
 her personal information, including her current university program, areas of interest, and key
 skills. She also adds details about her past experiences, such as a part-time job as a web developer
 and a group project on machine learning completed during her studies.  
@@ -264,19 +260,18 @@ The class diagram provided below offers a high-level overview of the domains of 
 for the software implementation.
 The diagram can be divided into three main sections:
 
-The central section contains the main entities related to users: Student, student profile,
-company, proposed interview, and university.
+The central section contains the main entities related to users: Student, Company and University. 
+This section contains also the related classes StudentProfile and Internship.
 
 The lower section illustrates the primary interactions between students and companies necessary
-for successfully performing an internship: Preliminary match, selection process, final match,
-and internship. This area also includes important management classes such as SelectionProcessManager
+for successfully performing an internship: PreliminaryMatch, SelectionProcess, FinalMatch,
+and Internship. This area also includes important management classes such as SelectionProcessManager
 and InternshipManager.
 
-The upper section displays the main classes related to the recommendation system.
-It includes classes for feedback and preliminary data collection, which are then sent
-to the analysis system to generate recommendations (also represented by a class).
-Finally, this system sends notifications, represented by another class, which connects
-to the user superclass.
+The upper section displays the main classes related to the recommendation system: RecommendationEngine,
+NotificationSystem and PreliminaryData,
+while on the right side it displays the classes for Feedback, Suggestion and Complaint.
+
 
 \begin{figure} [H]
     \centering
@@ -301,8 +296,8 @@ with this type of diagram due to their structured sequences of well-defined even
 
 The diagram illustrates the phases of the selection process. The initial stage begins
 with the student being matched to an internship opportunity,
-represented as the "PreliminaryMatch" state. Once the match occurs, the intermediary
-system, referred to as S\&C, establishes contact between the company and the student,
+represented as the "PreliminaryMatch" state. Once the match occurs, the
+system establishes contact between the company and the student,
 transitioning the process to the "contact established" state.
 
 At this point, an interview is scheduled. If the student does not participate in the
