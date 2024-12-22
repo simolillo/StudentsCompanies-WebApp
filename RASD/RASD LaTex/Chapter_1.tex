@@ -25,7 +25,7 @@ The main objectives of the system can be summarized as follows:
     \item \textbf{G2)} The system allows companies to advertise the internships that they offer.
     \item \textbf{G3)} The system recommends students suitable internships based on their CVs and recommends companies student CVs corresponding to their needs.
     \item \textbf{G4)} The system enables students and companies to initiate and manage the selection process.
-    \item \textbf{G5)} The system facilitates communication between the two parties during the internship.
+    \item \textbf{G5)} The system allows communication between the two parties throughout the ongoing internship process.
     \item \textbf{G6)} The system allows universities to monitor internships and handle complaints.
 \end{itemize}
 
@@ -171,13 +171,13 @@ here, in order to make reading process smoother and clearer:
     \hline
     Recommendation System, Suggestion System & A feature of the platform that identifies and matches suitable internships for students or suitable candidates for companies based on their profiles, preferences, and requirements. \\
     \hline
-    Student Profile, User Profile & A digital representation of a student within the system, containing personal details, uploaded CVs, skills, and internship applications. \\
+    Student Profile & A digital representation of a student within the system, containing personal details, uploaded CVs, skills. \\
     \hline
-    Company Profile & A digital representation of a company within the system, containing details about the company, uploaded projects or internships, and any associated preferences or requirements. \\
+    Company Profile & A digital representation of a company within the system, containing details about the company, uploaded projects or internships. \\
     \hline
-    Matching Process, Recommendation Process & The sequence of steps executed by the system to align the skills and preferences of students with the requirements of available internships offered by companies. \\
+    Recommendation Process & The sequence of steps executed by the system to align the skills and preferences of students with the requirements of available internships offered by companies. \\
     \hline
-    Feedback, Review & Information collected from students and companies after the internship or during the process to refine the matching system and improve user satisfaction. \\
+    Feedback, Suggestions & Information collected from students and companies after the internship or during the process to refine the matching system and improve user satisfaction. \\
     \hline
     Communication Space, Chat Feature, Messaging System & A feature in the platform that allows students, companies, and universities to interact and share important updates or resolve concerns. \\
     \hline
@@ -185,9 +185,7 @@ here, in order to make reading process smoother and clearer:
     \hline
     Interview Setup, Interview Management & The process supported by the system to schedule, conduct, and manage interviews between companies and students. \\
     \hline
-    Contract Signing & A formal agreement between a student and a company, signifying the acceptance of terms for an internship. \\
-    \hline
-    University Monitoring & The process where the university oversees the activities and outcomes of student internships and intervenes if necessary. \\
+    Monitoring by University & The process where the university oversees the activities and outcomes of student internships and intervenes if necessary. \\
     \hline
     Complaint Resolution & The process of identifying and addressing issues raised by students or companies during or after the internship period. \\
     \hline
@@ -197,9 +195,7 @@ here, in order to make reading process smoother and clearer:
     \hline
     Platform, System, Application & All synonyms for the software platform being developed to manage the interactions and processes related to internships. \\
     \hline
-    Mentorship, Guidance & Support provided by a company representative to a student during their internship to ensure they achieve both learning objectives and project goals. \\
-    \hline
-    Statistical Analysis, Data Insights & The process by which the system evaluates collected feedback and interactions to improve its recommendation algorithms and user experience. \\
+    Statistical Analysis & The process by which the system evaluates collected feedback and interactions to improve its recommendation algorithms and user experience. \\
     \hline
     
 \end{longtable}
@@ -213,7 +209,7 @@ here, in order to make reading process smoother and clearer:
 A list of acronyms used throughout the document for simplicity and readability:
 
 \begin{enumerate}
-    \item RASD - Requirements And Specification Document
+    \item RASD - Requirements Analysis and Specification Document
     \item S\&C - Students\&Companies
 \end{enumerate}
 
@@ -228,8 +224,6 @@ Here’s a list of reference documents that have been used in order to shape the
 
 \begin{enumerate}
     \item Stakeholders’ specification provided by the R\&DD assignment for the Software Engineering II course at Politecnico Di Milano for the year 2024/2025.
-    \item ``The World and the Machine'', by Michael Jackson, 1995. \\
-    Link: \url{https://ieeexplore.ieee.org/document/5071113}
     \item ``29148-2018, ISO/IEC/IEEE International Standard, Systems and software engineering, Life cycle processes, Requirements engineering'', by IEEE, 2018. \\
     Link: \url{https://ieeexplore.ieee.org/document/8559686}
     \item UML specifications, version 2.5.1. \\
@@ -247,50 +241,19 @@ Here’s a list of reference documents that have been used in order to shape the
 
 This Requirements and Analysis Specification Document is composed of four major sections.
 
-The first one is the \textbf{Introduction}, whose main objective is to introduce the reader to the domain
-of interest for the system to be developed, mainly using natural language to describe all the most
-fundamental actors and elements involved in the interactions between the system and the outer world. \\
-The \textbf{Purpose} provides the definition of the main goals for the application. \\
-The \textbf{Scope} is dedicated to reprocessing the original stakeholders’ requirements in a new high-level
-description of the domain of interest that aims at being as unambiguous and clear as possible. All the
-most meaningful actors of the world in which the system lives are mentioned and their role explained.
-Besides, the interactions between these actors and the system are touched at a high-level to clarify
-what will come next in the document and to justify some of the design choices that are taken in the
-following paragraphs of the RASD. From the natural language description of the system, world and
-machine phenomena can be derived and in fact, they come immediately afterwards. These can be
-interpreted as a schematisation of the previous description in which only the events occurring in the
-domain of interest are presented (see ”The World and the Machine”, by Michael Jackson, 1995 for
-more information). \\
-In the \textbf{Definitions} subsection it is possible to find specifications on terminology and vocabulary terms
-used throughout the document, so that ambiguity shouldn’t emerge from reading. From the table
-provided in this part, synonyms for words employed in the RASD are also listed.
+The \textbf{Introduction} serves to familiarize the reader with the domain relevant to the system being developed. It primarily uses natural language to describe the fundamental actors and elements involved in the interactions between the system and its external environment. \\
+The \textbf{Purpose} section outlines the primary goals of the application. \\
+The \textbf{Scope} section reinterprets the original stakeholders’ requirements into a new, high-level description of the domain. Its aim is to ensure clarity and eliminate ambiguity. This section identifies the key actors within the system's environment, explains their roles, and briefly outlines the interactions between these actors and the system. This high-level overview provides context for the remainder of the document and supports the justification of design decisions presented later in the RASD. Following this, the description transitions into defining the system, the external world, and machine-related phenomena. \\
+The \textbf{Definitions} subsection clarifies the terminology and vocabulary used throughout the document, minimizing potential ambiguity. It includes a table listing synonyms for terms employed in the RASD to ensure consistency and understanding.
 
-The second major section of this document is the \textbf{Overall Description}. This part of the RASD has
-several goals, which are achieved thanks to its subsections. \\
-The first one is dedicated to scenarios. The \textbf{Scenarios} subsection aims at validating the stakeholders’
-needs by illustrating concrete instances and examples of interactions with the system to be developed. \\
-The \textbf{Domain Class Diagram} and \textbf{State Charts} are UML diagrams that provide a graphical visual-
-ization of the world of interest, consistently with the Introduction section. \\
-In the \textbf{Product Functions} chapter, the functional requirements of the system are listed in a schematic
-way. This analysis derives as a consequence of all the previous sections, in which the world of inter-
-est has been described and accurately observed in order to understand what requirements the system
-should meet. \\
-Finally, the \textbf{Assumptions, Dependencies and Constraints} subsection is dedicated to listing all the
-events and elements of the domain which are not under the system’s control or which the system has
-some dependency over.
+The second major section of this document is the \textbf{Overall Description}, which serves multiple purposes through its subsections. \\
+The first subsection focuses on \textbf{Scenarios}, aiming to validate the stakeholders’ needs by presenting concrete examples and instances of interactions with the system under development. \\
+The \textbf{Domain Class Diagram} and \textbf{State Charts} subsections utilize UML diagrams to provide a graphical representation of the domain of interest, aligning with the details introduced earlier in the document. \\
+The \textbf{Product Functions} subsection systematically lists the system's functional requirements. This analysis builds on the previous sections, leveraging the insights gained from observing and describing the domain to identify the necessary system requirements. \\
+Lastly, the \textbf{Assumptions, Dependencies, and Constraints} subsection enumerates domain elements and events that lie outside the system’s control or involve dependencies on external factors.
 
-The third relevant part of this RASD is \textbf{Specific Requirements}, which is more concerned about
-turning the functional requirements listed in the Product Functions section into schematic and graph-
-ical representations. \\
-The \textbf{External Interface Requirements} subsection deals with the interfaces and modes of interactions
-between the system and external users or other software products. \\
-The \textbf{Functional Requirements} chapter offers a schematic view of the functional requirements listed
-in the Product Functions section, by means of use cases, use case diagrams and sequence diagrams.
-A mapping between these graphical representations and the associated requirements is also provided. \\
-The part named \textbf{Design Constraints} specifies any constraint that the system has to respect when be-
-ing developed, while the last section called \textbf{Software System Attributes} lists a series of qualities
-that the software to be implemented must have and the way to achieve them (for instance reliability,
-availability...).
-
-The final section called \textbf{Alloy} provides the study of the system through Alloy, which is a tool for
-analyzing systems and seeing if they are designed correctly.
+The third main section of this RASD, \textbf{Specific Requirements}, focuses on transforming the functional requirements outlined in the Product Functions section into structured and graphical representations. \\
+The \textbf{External Interface Requirements} subsection addresses the interfaces and interaction modes between the system and external users or software products. \\
+The \textbf{Functional Requirements} subsection provides a structured view of the functional requirements using tools like use cases, use case diagrams, and sequence diagrams. It also includes a mapping between these graphical elements and their associated requirements. \\
+The \textbf{Design Constraints} subsection outlines the constraints the system must adhere to during development. The \textbf{Software System Attributes} subsection specifies the qualities the software must possess, such as reliability and availability, along with approaches to achieving them. \\
+The final section, \textbf{Alloy}, presents an analysis of the system using Alloy, a tool designed to evaluate system design correctness.
