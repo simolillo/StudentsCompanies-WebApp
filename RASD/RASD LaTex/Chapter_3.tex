@@ -582,8 +582,41 @@ In this section is displayed every sequence diagram relative to every use case.
     \caption{Interrupt Internship}
 \end{figure}
 
-
+\newpage
 \subsection{Activity Diagrams}
+Activity diagrams are created to give insights about specific sequences of operations
+occurring in some parts of the system being described.
+Recommendation Engine process and Internship Selection Process are being represented:
+\begin{figure} [H]
+    \centering
+    \includegraphics [width=.7\linewidth] {actdiagram.png}
+\end{figure}
+
+The Recommendation Engine diagram illustrates 
+the process through which the platform matches students with 
+internships based on the evaluation of their CVs and the internship details. 
+It starts when a student submits their CV and a company posts an internship. 
+The system analyzes both using keyword matching and statistical analysis to generate a recommendation score.
+ The score is then evaluated against a predefined threshold. 
+ If the score is above the threshold, the student and company are notified of a suitable match. 
+
+\begin{figure} [H]
+    \centering
+    \includegraphics [width=.7\linewidth] {actdiagram.drawio.png}
+\end{figure}
+
+The Internship Selection Process diagram 
+captures the steps taken once a student 
+has been matched with an internship. 
+After a recommendation is accepted, 
+the company schedules and conducts 
+an interview with the student. 
+The candidate is evaluated 
+based on the interview outcome. 
+If the candidate is deemed a good fit, 
+both the student and the company are notified, 
+and the selection is finalized. 
+
 
 \newpage
 \subsection{Requirements Mapping}
