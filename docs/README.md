@@ -2,6 +2,8 @@ https://docs.google.com/document/d/1nLRVek-0MDD0lUgJVuikPj764J1pkwCzrhAvTV0aysM/
 
 https://app.diagrams.net/#G1dmy1LRx5bMvh141L99QqY_TJa9fB3bwW#%7B%22pageId%22%3A%22C5RBs43oDa-KdzZeNtuy%22%7D
 
+https://www.figma.com/design/WWUvU1wkS3VqE8BnnMoA2A/Student%26Companies?node-id=0-1&t=cqLQCT37od2rzOZs-1
+
 # RussolilloVisaniWang
 Requirement Engineering and Design Project
 
