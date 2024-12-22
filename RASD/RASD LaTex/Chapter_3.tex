@@ -96,11 +96,12 @@ The end-users' minimus requirements (hardware wise) are:
     \item Database Interface as a database is needed to store and manipulate users' data
 \end {itemize}
 
+\newpage
 \section{Functional Requirements}
 \subsection{Use Case Diagram}
 \begin{figure} [H]
     \centering
-    \includegraphics [width=.8\linewidth] {usecasewhite.png}
+    \includegraphics [width=1\linewidth] {usecasewhite.png}
     \caption{S\&C Use Case Diagram}
 \end{figure}
 A UML Use Case Diagram visually represents the interactions between users (actors) and the system. 
@@ -147,9 +148,8 @@ providing a clear understanding of how the system fulfills its functional requir
     \textbf{Entry Condition} & Student has opened the S\&C application. \\ \hline
     \textbf{Event Flow} & 
     1. S\&C shows the log in interface. \newline
-    2. Student clicks on the button to sign in. \newline
-    3. Student is redirected to their university's login page. \newline
-    4. Student inserts his/her credentials and confirms. \\ \hline
+    2. Student inserts his/her credentials and confirms. \newline
+    3. Student logs in. \\ \hline
     \textbf{Exit Condition} & S\&C shows the initial (home) page of the application for a student. \\ \hline
     \textbf{Exceptions} & 
     1. If the student inserts incorrect credentials, the authentication page will return an error and ask him/her to retry. \\ \hline
