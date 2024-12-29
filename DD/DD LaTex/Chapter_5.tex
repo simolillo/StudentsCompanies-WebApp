@@ -2,8 +2,160 @@
 
 \section{Overview}
 
+This section outlines the processes of implementation, integration, and testing for the Students\&Companies
+(S\&C) platform, describing how its key functionalities were developed and validated to ensure
+reliability and effectiveness.
+
+The chapter is divided into three main parts:
+
+\begin{enumerate}
+    \item Feature Identification: This part focuses on the platform's key functionalities, derived from
+    primary use cases, and highlights the microservices that support them. 
+    \item Component Integration and Testing: This section describes the integration of microservices
+    to test features, using a thread-based strategy that mirrors real-world scenarios.
+    \item System Testing: Here, the focus shifts to testing the platform as a whole, ensuring that
+    all components work together seamlessly to deliver a complete and robust system.
+\end{enumerate}
+
+The platform was designed with a microservices-based architecture, enabling the division
+of functionalities into modular components. During implementation, each microservice was
+developed to address a specific aspect of the system, such as recommendation, selection
+process management, or feedback handling. However, the testing strategy was designed to go
+beyond validating individual components, ensuring that the overall system functionalities
+meet the required specifications.
+
+The testing process was executed in three phases:
+\begin{enumerate}
+    \item Unit Testing: In the first phase, unit tests were performed on individual microservices to ensure
+    that each component functions correctly in isolation. This phase focused on verifying the internal
+    logic and functionality of each microservice, ensuring a solid foundation for the system.
+    \item Feature Integration Testing: The next phase involved integration testing based on the
+    platform's key features. Microservices were integrated to test specific use cases, such as the
+    matching process between students and companies, ensuring that they worked together as intended.
+    A thread-based strategy was used to test these features incrementally, starting from simple
+    interactions and gradually integrating more complex functionalities.
+    \item System Testing: In the final phase, comprehensive system tests were performed to validate
+    the entire platform. This stage involved testing the system as a whole, ensuring that all
+    microservices and integrated features functioned cohesively and met the overall functional requirement
+\end{enumerate}    
+ 
+By combining unit tests, feature-based integration tests, and comprehensive system testing,
+this approach provides a robust framework to identify and resolve issues progressively.
+This ensures that the final system is both scalable and reliable, meeting the diverse needs of its users.
+
+\newpage
 \section{Implementation Plan}
 \subsection{Features Identification}
+
+For the development of the Students\&Companies (S\&C) platform, several key features have been
+identified, each representing a core functionality that directly supports user interactions
+and business processes. The order in which these features are listed reflects the sequence
+in which they will be implemented and tested. Each feature is a logical component of the system,
+providing specific, user-visible functionalities that contribute to the overall experience and
+effectiveness of the platform.
+
+\subsubsection{Profile Creation Features}
+
+The profile creation feature is available for students, companies, and universities.
+For students and companies, the feature is more detailed compared to universities. 
+
+For students, the functionality includes the ability to initially register on the
+platform, add information to their profile, and upload photographs and documents.  
+For companies, they must be able to upload information and photographs to their
+profiles and create pages for internships, where they can also upload relevant information,
+photos, and documents.  
+For universities, the profile functionality is simpler; they only need to upload basic information.  
+
+\subsubsection{Selection Process Management Features}
+\subsubsection{Communication Features}
+\subsubsection{Feedback and Complaints Collection Features}
+\subsubsection{Providing Recommendations Features}
+\subsubsection{Complaints Report Generation Features}
+
 \subsection{Components Integration and Testing}
 
+In the integration testing phase of the Students\&Companies (S\&C) platform, a hread-based strategy
+was chosen to ensure a systematic and realistic evaluation of the system. This approach focuses on
+testing complete end-to-end flows, or "threads," that represent specific use cases, such as matching
+students with internships or managing the selection process. 
+
+The thread-based strategy was selected because it allows the system to be tested in a way that
+closely mirrors real-world usage. By focusing on functional threads derived from key features,
+we can ensure that the microservices interact seamlessly to deliver the desired functionalities.
+This incremental approach also simplifies the detection and resolution of issues, as it starts
+with the core features and progressively integrates additional functionalities.
+
+In practice, the strategy involves first testing simpler flows that require fewer components,
+such as user profile creation, and then gradually introducing more complex scenarios,
+like recommendation and communication. This ensures that each functionality is validated
+individually and in combination with others, providing confidence in the system’s robustness
+and reliability.
+
+\subsubsection{Profile Creation Features}
+
+The profile creation feature supports students, companies, and universities, with students and
+companies having more detailed functionalities than universities.
+
+The process starts with user registration via the gateway microservice, which validates the
+user’s information, such as email and password. For students, the registration is managed by
+the student user management microservice, which processes and stores the data in the database.
+Similarly, companies and universities have their data handled by their respective microservices.
+
+After registration, users log in through the gateway microservice. Students can add detailed
+information to their profiles, including skills, experiences, and documents, managed by the
+student user management microservice and stored in the database. Companies can add company
+descriptions, upload documents and photos, and create internship pages, with the company
+user management microservice handling these operations. Universities have simpler profiles,
+where only basic details are uploaded through the university user management microservice.
+
+Throughout this process, the gateway microservice handles connections and secure data
+transfer, while the user management microservices ensure proper profile creation, updates,
+and storage.
+
+\subsubsection{Selection Process Management Features}
+\subsubsection{Communication Features}
+\subsubsection{Feedback and Complaints Collection Features}
+\subsubsection{Providing Recommendations Features}
+\subsubsection{Complaints Report Generation Features}
+
+
+\newpage
 \section{System Testing}
+
+System testing is a critical phase of the development lifecycle where the fully
+integrated Students \& Companies (S\&C) platform is rigorously evaluated to ensure that it
+meets both functional and non-functional requirements. The testing environment is carefully
+designed to closely replicate the actual production setup, enabling a comprehensive analysis
+of the platform's behavior under realistic conditions.
+
+Functional testing is focused on verifying that the platform meets the functional specifications
+outlined in the requirements documentation, such as use cases. Key functionalities are examined,
+including profile creation and management for both students and companies, the recommendation
+system’s ability to match students with internships based on CV data and company requirements,
+and support for the selection process, such as interview scheduling and structured questionnaires.
+Communication features, including notifications and messaging, are tested to ensure seamless
+interaction between users, while feedback and complaint management functionalities are validated
+to confirm that users can effectively submit and track concerns.
+
+Non-functional testing evaluates the system’s performance, scalability, and reliability under
+a variety of conditions. This includes:
+
+\begin{itemize}
+\item Performance Testing: Measuring response times, throughput, and resource utilization to ensure that the
+system operates efficiently under typical conditions.
+\item Load Testing: Gradually increasing the number of concurrent users or sustaining a steady workload to
+verify that the platform can handle expected user volumes without performance degradation.
+\item Stress Testing: Simulating extreme conditions, such as sudden spikes in user activity or system failures,
+to test the platform’s ability to recover and maintain availability in challenging scenarios.
+\end{itemize}
+
+To ensure thorough coverage, the testing methodology combines manual and automated approaches.
+Manual testing is employed to validate specific scenarios, such as edge cases in the recommendation
+system or workflows related to complaint resolution. Automated testing leverages techniques such as
+fuzz testing, concolic execution, and search-based strategies, enabling repeated evaluations of the
+system under varying conditions. These methods ensure the platform’s robustness, reliability, and
+consistency across diverse environments.
+
+Through this structured and comprehensive system testing approach, the S\&C platform is validated
+to perform reliably and effectively in real-world scenarios, meeting the needs of students,
+companies, and universities alike.
