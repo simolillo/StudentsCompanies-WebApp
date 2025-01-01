@@ -1,17 +1,317 @@
 \chapter{Architectural Design}
 
+% //////////////////////////////
+% ------------------------------
 \section{Overview}
+% ------------------------------
+% //////////////////////////////
+
+% //////////////////////////////
+% ------------------------------
 \subsection{High Level View}
+% ------------------------------
+% //////////////////////////////
 
+This section provides an overview of the architectural components that make up the Students\&Companies system and highlights their key interactions.
+
+The Students\&Companies system adopts a microservices architectural approach. This style of architecture involves designing the application as a collection of independent services, each responsible for a specific functionality. These services collaborate with one another to fulfill the system's overall objectives. To enhance clarity, a high-level representation of the system, including its microservices, is shown in the following image:
+
+% ---------------------------------
+% ---------------------------------
+% IMAGE
+\vspace{20pt}
+\hrule
+\vspace{10pt}
+IMAGE
+\vspace{10pt}
+\hrule
+\vspace{20pt}
+% IMAGE
+% ---------------------------------
+% ---------------------------------
+
+From a high-level viewpoint, the elements mentioned earlier are illustrated in the figure below. At the top, the client is represented by the first icon, while the Students\&Companies system is depicted as a collection of microservices. \textcolor{red}{At the bottom of the figure}, the data layer is represented with a database icon.
+
+The Students\&Companies system comprises several microservices, each fulfilling specific responsibilities. Their details are as follows:
+
+\begin{itemize}
+    \item \textbf{Gateway Microservice:} This microservice manages two key functionalities. Firstly, it handles the authentication process for users, such as students, companies, and universities. All incoming user requests are processed by the Gateway, which dispatches them to the relevant microservice for handling. Similarly, all system responses are routed back through the Gateway to reach the users. To ensure scalability and performance, this microservice can be replicated on the server side.
+
+    \item \textbf{User Management Microservice:} Responsible for managing user data and profiles, this microservice oversees the profiles of students, companies, and universities. It provides user profile pages and ensures seamless access to personal data whenever required.
+
+    \item \textbf{Recommendation System Microservice:} This microservice is tasked with analyzing student CVs, company project details, and internship data to recommend suitable matches between students and companies. It uses algorithms and data from the shared database to optimize the pairing process.
+
+    \item \textbf{Internship Management Microservice:} This microservice handles all aspects of internships. It supports the creation and updating of internship listings, manages student applications, and provides detailed views of ongoing and completed internships.
+
+    \item \textbf{Selection Process Management Microservice:} Dedicated to assisting in the selection and recruitment process, this microservice provides features such as managing interview schedules, handling offer confirmations, and finalizing internship agreements.
+
+    \item \textbf{Communication Platform Microservice:} This microservice facilitates communication between students, companies, and universities. It provides a dedicated platform for exchanging messages, addressing inquiries, and resolving internship-related issues.
+
+    \item \textbf{Feedback\&Complaint Microservice:} Focused on gathering and managing feedback, this microservice enables users to submit complaints or reviews about internships. It provides tools for universities to monitor and address reported issues effectively.
+
+    \item \textbf{Notification Microservice:} Responsible for managing notifications throughout the system, this microservice listens to events (event-driven architecture) and sends timely alerts to users, such as internship deadlines, application updates, or system announcements.
+
+    \item \textbf{Statistical Analysis Tool:} This tool aids in analyzing historical data and user feedback to refine the recommendation algorithms and improve the overall user experience.
+\end{itemize}
+
+As for the interactions between these microservices, they will be elaborated upon in greater detail in the subsequent sections of this document. For now, it is important to highlight that all communications between the client and the Students\&Companies platform are routed through the Gateway Microservice. Additionally, the various user interfaces provided by the platform are supplied by different microservices, each handling the data and functionalities specific to their domain. However, the delivery of these interfaces to the client is always mediated by the gateway.
+
+All microservices in the system expose \textbf{RESTful APIs}, which serve as the primary access points to their data and functionalities. When necessary, microservices interact with each other through these APIs, and the specifics of these interactions will be outlined in subsequent views.
+
+Moreover, every microservice has access to a \textbf{shared database} via the interfaces provided by the DBMS. While all microservices share this common data space, each one is responsible for distinct operations and computations based on the specific functionalities it offers.
+
+The system’s internal interactions are also built upon an \textbf{event-driven architecture}. In this pattern, microservices can asynchronously publish events to an Event Bus or Event Queue. Other components within the system can consume these events and perform actions in response. Further details regarding this architecture will be provided in the following sections of the Design Document.
+
+% //////////////////////////////
+% ------------------------------
 \section{Component View}
-\subsection{RESTful APIs Component Diagram}
-\subsection{Service Discovery Component Diagram}
-\subsection{Event-Driven Pattern Components}
-\subsection{Data Layer Access Component Diagram}
-\subsection{User Interfaces Component Diagram}
+% ------------------------------
+% //////////////////////////////
 
+This section aims to provide an overview of the various components that constitute the Students\&Companies system. UML Component diagrams are utilized to represent the logical software elements that work collaboratively to achieve the objectives defined for the development of the system.
+
+Given that the structural components of the Students\&Companies platform cannot be effectively represented in a single diagram, multiple diagrams are presented. This approach is adopted to ensure clarity and avoid overcrowding the visualizations. The diagrams have been organized based on the principle of grouping components that frequently interact with one another.
+
+It is worth noting that, despite the division into separate diagrams for explanation purposes, the system functions as a cohesive whole. The components depicted in these diagrams belong to the same system and collectively contribute to the overall operation and functionality of the platform.
+
+% //////////////////////////////
+% ------------------------------
+\subsection{RESTful APIs Component Diagram}
+% ------------------------------
+% //////////////////////////////
+
+One of the key features highlighted in the introductory section of the Students\&Companies project is that microservices provide RESTful APIs to handle incoming commands, share data, and interact with each other. This view focuses on outlining, from a broad perspective, how these microservices leverage their APIs to operate efficiently.
+
+% ---------------------------------
+% ---------------------------------
+% IMAGE
+\vspace{20pt}
+\hrule
+\vspace{10pt}
+IMAGE
+\vspace{10pt}
+\hrule
+\vspace{20pt}
+% IMAGE
+% ---------------------------------
+% ---------------------------------
+
+Let’s analyze the key concepts conveyed by the diagram. This UML component diagram is used to illustrate the RESTful APIs provided by each microservice within the Students\&Companies system. These APIs perform specific computations on data related to the functionality offered by the respective microservice. For example, the Internship Management Microservice exposes an API that processes internship data within the shared database and returns relevant internship information.
+
+The Gateway Microservice serves as the entry point for all user requests. The Dispatcher component inside the Gateway is responsible for routing user requests to the appropriate microservices that are tasked with handling them. This explains why the Dispatcher "uses" all the APIs exposed by the other microservices.
+
+In certain cases, the microservices in the Students\&Companies system may also interact with one another through their RESTful APIs to perform joint computations In this diagram, these interactions are shown. For
+instance:
+
+\begin{itemize}
+    \item The Notification Microservice needs to query the Student Manager, University Manager, Company Manager inside the User Management Microservice whenever it needs to deliver the notification to a specific set of users.
+    \item The Notification Microservice must query the User Management Microservice when the list of all students in the Students\&Companies system is required (for example, to notify all students about a new internship opportunity available on the platform).
+    \item The Communication Platform Microservice uses the Notification API to deliver alerts such as internship status updates, interview invitations, or feedback to the appropriate users.
+    \item The Recommendation System Microservice must leverage the Statistical Analysis Tool to refine its matching algorithms and provide better internship recommendations based on student profiles and internship data.
+    \item The User Management Microservice uses the Internship Management API to update student profiles once they have been matched with an internship, ensuring that the students' records reflect their current opportunities.
+    \item The Internship Management Microservice must interact with the Selection Process Management Microservice to facilitate the selection process, including interview scheduling and the finalization of student placements.
+    \item The Feedback\&Complaint Microservice interacts with the Statistical Analysis Tool to provide useful information for recommendations.
+\end{itemize}
+
+This diagram must be interpreted considering the event-driven paradigm adopted in the Students\&Companies project. Some interactions and event flows within the system occur asynchronously, following an event-driven approach that is further explained in subsequent views. This is why certain interactions, which may appear absent here, are actually managed asynchronously to improve the overall system performance.
+
+Another crucial aspect to highlight regarding this diagram is the "Manager" components within the various microservices. These components internally implement a Model-View-Controller pattern to deliver their services. The following representation illustrates a component diagram that focuses solely on the internals of the "Manager" component for a generic microservice:
+
+% ---------------------------------
+% ---------------------------------
+% IMAGE
+\vspace{20pt}
+\hrule
+\vspace{10pt}
+IMAGE
+\vspace{10pt}
+\hrule
+\vspace{20pt}
+% IMAGE
+% ---------------------------------
+% ---------------------------------
+
+The Model component is responsible for organizing and managing data. Each microservice in the Students\&Companies system is designed to handle a specific portion of the data domain. For example, the Internship Management Microservice focuses solely on managing and providing information about internships. Consequently, each Model component within the Manager components ensures data consistency with the DBMS, accessing it when necessary, and performing related operations.
+
+The View component offers the user interface. Since different microservices handle various types of information within the Students\&Companies ecosystem, multiple user interfaces are distributed across the microservices and managed by their respective View components.
+
+The Controller acts as the "bridge" between the Model and the View. This component is responsible for:
+\begin{itemize}
+    \item Receiving requests from the View component when the user interacts with the user interface.
+    \item Performing the appropriate computation based on those requests.
+    \item Manipulating data through the Model, passing user requests to the data layer.
+    \item Updating the View if the computation results in changes to the user interface.
+\end{itemize}
+
+Throughout this document, the term "Manager" component will be used in a more general sense to encompass the behavior and functionality of this internal architecture.
+
+% //////////////////////////////
+% ------------------------------
+\subsection{Service Discovery Component Diagram}
+% ------------------------------
+% //////////////////////////////
+
+This simple component diagram illustrates an important service provided by the Gateway Microservice to allow all microservices to locate and collaborate with each other. This service is known as "Service Discovery" and involves maintaining a register (inside the Gateway Microservice) of active microservices.
+
+In this way:
+\begin{itemize}
+    \item A newly launched microservice can register itself to be discovered by other microservices.
+    \item All microservices can contact other active microservices in the system to send requests.
+\end{itemize}
+
+Here’s the diagram:
+
+% ---------------------------------
+% ---------------------------------
+% IMAGE
+\vspace{20pt}
+\hrule
+\vspace{10pt}
+IMAGE
+\vspace{10pt}
+\hrule
+\vspace{20pt}
+% IMAGE
+% ---------------------------------
+% ---------------------------------
+
+The interpretation is straightforward. The Gateway Microservice contains a component called the Discovery Service, which implements the logic to provide the discovery functionality. The Discovery Service component exposes an API (\texttt{DiscoveryServiceAPI}), which can be used by all other microservices to locate each other.
+
+% //////////////////////////////
+% ------------------------------
+\subsection{Event-Driven Pattern Components}
+% ------------------------------
+% //////////////////////////////
+
+This section illustrates all the components required to implement asynchronous, event-driven communication between microservices in the system. This design decision has been made to optimize the system, particularly for interactions between microservices that would otherwise require computationally expensive synchronous communication.
+
+The following diagram shows the major components that enable the event-driven architecture:
+
+% ---------------------------------
+% ---------------------------------
+% IMAGE
+\vspace{20pt}
+\hrule
+\vspace{10pt}
+IMAGE
+\vspace{10pt}
+\hrule
+\vspace{20pt}
+% IMAGE
+% ---------------------------------
+% ---------------------------------
+
+The most important element is the Bus component, which can be thought of as a queue of messages or events. Microservices in the Students\&Companies system can either produce events (i.e., push events onto the queue) or consume events (i.e., read events from the queue) and take actions accordingly.
+
+It is important to note that this representation is intentionally general and not tied to any specific software product, framework, or implementation. The concrete implementation details of this design are left to the product's implementation.
+
+From the diagram, it is clear that only certain microservices are shown, as they are the ones utilizing this mechanism to communicate and interact. Within these microservices, there is an Event Publisher component if the microservice needs to publish events to the Bus, and an Event Consumer component if the microservice needs to read events from the Bus.
+
+For example, the Notification Microservice listens for events to generate notifications for users based on the events in the system.
+
+The Feedback\&Complaint Microservice publishes events whenever a new feedback or complaint is submitted.
+
+The Communication Platform Microservice publishes events when new messages or communications are exchanged.
+
+The Recommendation Microservice publishes events to notify about new recommendations made between students and internships.
+
+The Selection Process Microservice publishes events related to the progression or completion of the selection process.
+
+The Internship Management Microservice publishes events whenever an internship is created, updated, or closed.
+
+% //////////////////////////////
+% ------------------------------
+\subsection{Data Layer Access Component Diagram}
+% ------------------------------
+% //////////////////////////////
+
+This diagram provides a convenient view of how access is performed by the various microservices on the shared data layer (shared DBMS).
+
+% ---------------------------------
+% ---------------------------------
+% IMAGE
+\vspace{20pt}
+\hrule
+\vspace{10pt}
+IMAGE
+\vspace{10pt}
+\hrule
+\vspace{20pt}
+% IMAGE
+% ---------------------------------
+% ---------------------------------
+
+The DBMS exposes an interface that is used by all microservices to interact with the persistent data stored within it.
+
+Looking at each microservice individually, it can be observed that they all contain a "Manager" component, which is responsible for manipulating and accessing the data.
+
+Each microservice in the Students\&Companies system is responsible for a specific section of the data domain. For example, the Internship Management Microservice only works with the data related to internships stored in the shared DBMS and provides other microservices with the relevant information about internships whenever needed.
+
+% //////////////////////////////
+% ------------------------------
+\subsection{User Interfaces Component Diagram}
+% ------------------------------
+% //////////////////////////////
+
+This diagram provides a convenient view of the system in terms of user interfaces. The design choices made regarding the user interfaces in the Students\&Companies system can be summarized as follows:
+
+\begin{itemize}
+    \item The different user interfaces are not gathered in a single component; instead, they are distributed across various microservices. This decision arises from the fact that different UIs present different views of the application’s data. Therefore, some microservices (handling specific sections of the data domain) may be better suited to provide a particular user interface than others.
+    \item Every time a user interface is presented to the user, the Gateway Microservice is responsible for transmitting the data, acting as an intermediary between the user and the internal microservices. As a result, all UI content passes through the Gateway before reaching the client user.
+\end{itemize}
+
+This diagram attempts to illustrate both points by representing a View component inside each microservice that is responsible for building and offering specific user interfaces when required. The Gateway Microservice intercepts the user's requests, and when a new UI is needed, it contacts the appropriate microservice to supply it. It should be noted that this UML diagram is non-standard, in the sense that the interfaces exposed by the components in this view are UIs rather than sets of methods. However, it is intended as a helpful illustration to show part of the MVC pattern (with View components inside the microservices) and the distribution of UIs across the system.
+
+% ---------------------------------
+% ---------------------------------
+% IMAGE
+\vspace{20pt}
+\hrule
+\vspace{10pt}
+IMAGE
+\vspace{10pt}
+\hrule
+\vspace{20pt}
+% IMAGE
+% ---------------------------------
+% ---------------------------------
+
+% //////////////////////////////
+% ------------------------------
 \section{Deployment View}
+% ------------------------------
+% //////////////////////////////
+
+The deployment view focuses on the execution aspects of the Students\&Companies system, detailing how and where the system components are run. It looks at how services are distributed, how they are orchestrated, and the infrastructure supporting the application. Essentially, this section provides a connection between the software components that drive the system's functionality and the physical hardware needed for their operation.
+
+The goal of this section is to offer a clear understanding of the architectural decisions that contribute to efficient use of resources, scalability to accommodate different levels of demand, and flexibility to adapt to changing operational conditions.
+
+As in the previous sections, this view is represented through a series of diagrams that explore the deployment environment at various levels of detail. These diagrams are complementary and should be seen as a layered illustration of the same concept, starting from a broad overview and progressing to more intricate details.
+
+% //////////////////////////////
+% ------------------------------
 \subsection{High-Level Deployment View}
+% ------------------------------
+% //////////////////////////////
+
+This diagram illustrates the essential components required to present the deployment view of the Students\&Companies system.
+
+% ---------------------------------
+% ---------------------------------
+% IMAGE
+\vspace{20pt}
+\hrule
+\vspace{10pt}
+IMAGE
+\vspace{10pt}
+\hrule
+\vspace{20pt}
+% IMAGE
+% ---------------------------------
+% ---------------------------------
+
+
+
 \subsection{Detailed Deployment View}
 
 \section{Run Time View}
