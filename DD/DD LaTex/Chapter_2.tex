@@ -310,13 +310,473 @@ IMAGE
 % ---------------------------------
 % ---------------------------------
 
+As depicted in the figure, the Students\&Companies platform follows a three-tier architecture from a deployment standpoint. The illustration is divided into three distinct areas, representing the three layers: the client users (on the left), the server (in the center), and the data layer (on the right).
 
+Users interact with the platform through devices with internet access, capable of sending and receiving requests to the server hosting Students\&Companies. The entire system is deployed on a single remote server, where all microservices operate as separate programs and communicate with one another. The data layer is supported by a remote Database server that provides persistent data storage for the entire platform.
 
+This deployment model offers several advantages. Primarily, it ensures a clear separation of concerns between the different layers, particularly between the application’s business logic (hosted on the server) and the data layer (within the DBMS). Furthermore, it is a scalable architecture, which can be extended to handle varying workloads. For example, the data layer can be replicated across multiple servers to enhance performance when accessing and manipulating data. Similarly, this approach can be applied to the business layer if necessary.
+
+% //////////////////////////////
+% ------------------------------
 \subsection{Detailed Deployment View}
+% ------------------------------
+% //////////////////////////////
 
+The following diagram provides additional details on how the software components that make up the Students\&Companies application are mapped to hardware elements.
+
+% ---------------------------------
+% ---------------------------------
+% IMAGE
+\vspace{20pt}
+\hrule
+\vspace{10pt}
+IMAGE
+\vspace{10pt}
+\hrule
+\vspace{20pt}
+% IMAGE
+% ---------------------------------
+% ---------------------------------
+
+The primary components in this diagram remain consistent with the previous description. On the left side, we have the client-side, where users are equipped with devices that have internet connectivity to communicate with the server via the TCP/IP protocol. The multiplicity annotations on the connection between the client and the server indicate that multiple clients can interact with the server concurrently.
+
+The server is represented as the central component in the diagram. The UML deployment diagram allows for a detailed view of the execution environment of the Students\&Companies system by nesting various boxes. In this case, all the microservice artifacts are mapped to a single server instance. These microservices run as separate processes within the server.
+
+On the right-hand side, we see the data layer, which consists of a database server that is connected to the central server via the internet (using TCP/IP).
+
+This design has been selected because it supports seamless scaling of the system. For instance, the database server can be replicated to handle multiple incoming requests from the server in parallel. If required, a more sophisticated distributed architecture can be implemented by distributing the microservice components across different network nodes, ensuring the system continues to operate smoothly with appropriate configuration. Furthermore, microservices can be replicated within the server to further enhance performance.
+
+% //////////////////////////////
+% ------------------------------
 \section{Run Time View}
+% ------------------------------
+% //////////////////////////////
 
+This section offers an in-depth look at the internal workings of the system and the interactions between its components during runtime. It focuses on the dynamic behavior of the software, highlighting how control, data, and communication flow between various modules or components.
+
+% //////////////////////////////
+% ------------------------------
+\subsubsection{Student Log In}
+% ------------------------------
+% //////////////////////////////
+
+% ---------------------------------
+% ---------------------------------
+% IMAGE
+\vspace{20pt}
+\hrule
+\vspace{10pt}
+IMAGE
+\vspace{10pt}
+\hrule
+\vspace{20pt}
+% IMAGE
+% ---------------------------------
+% ---------------------------------
+
+The Student Log In process begins when the Student submits their credentials (username and password) to the Gateway Microservice. The Gateway then forwards these credentials to the University API for authentication. If the credentials are valid, the University API confirms the successful authentication by sending an "authentication ok" message back to the Gateway. In response, the Gateway sends the username to the Student Manager, which checks if the student is a new user.
+
+If the Student is a new user, the Student Manager requests the DBMS to store the student's information. Afterward, the Student Manager retrieves the user profile and sends it back to the Gateway Microservice. The Gateway then delivers the user profile to the Student, completing the login process.
+
+However, if the credentials are invalid, the University API notifies the Gateway Microservice of the authentication failure. The Gateway then generates and sends an error message to the Student, informing them that the login attempt was unsuccessful.
+
+This sequence ensures that students either gain access to their profiles upon successful authentication or receive an error message when the authentication fails.
+
+% //////////////////////////////
+% ------------------------------
+\subsubsection{Company Log In}
+% ------------------------------
+% //////////////////////////////
+
+% ---------------------------------
+% ---------------------------------
+% IMAGE
+\vspace{20pt}
+\hrule
+\vspace{10pt}
+IMAGE
+\vspace{10pt}
+\hrule
+\vspace{20pt}
+% IMAGE
+% ---------------------------------
+% ---------------------------------
+
+The Company Log In process begins when the Company provides their credentials (username and password) to the Gateway Microservice. The Gateway then forwards these credentials to the Company Manager for authentication. If the credentials are correct, the Company Manager confirms the successful authentication by sending an "authentication ok" message to the Gateway Microservice. In turn, the Gateway forwards the username to the Company Manager to check if the company is a new user.
+
+If the Company is a new user, the Company Manager requests the DBMS to store the company’s details. Once the company’s information is stored, the Company Manager retrieves the user profile and sends it back to the Gateway. The Gateway then returns the user profile to the Company, completing the login process.
+
+On the other hand, if the credentials are incorrect, the Company Manager sends an authentication failure message to the Gateway. The Gateway then generates and delivers an error message to the Company, indicating that the login attempt was unsuccessful.
+
+This flow ensures that the Company can either access their profile on successful authentication or receive an error message if authentication fails.
+
+% //////////////////////////////
+% ------------------------------
+\subsubsection{University Log In}
+% ------------------------------
+% //////////////////////////////
+
+% ---------------------------------
+% ---------------------------------
+% IMAGE
+\vspace{20pt}
+\hrule
+\vspace{10pt}
+IMAGE
+\vspace{10pt}
+\hrule
+\vspace{20pt}
+% IMAGE
+% ---------------------------------
+% ---------------------------------
+
+The University Log In process begins when the University provides their credentials (username and password) to the Gateway Microservice. The Gateway forwards these credentials to the University Manager for authentication. If the credentials are correct, the University Manager sends an "authentication ok" message back to the Gateway Microservice. The Gateway then sends the username to the University Manager to verify if the University is a new user.
+
+If the University is a new user, the University Manager requests the DBMS to store the university’s information. After storing the details, the University Manager retrieves the user profile and sends it to the Gateway Microservice. The Gateway then forwards the user profile to the University, completing the login process.
+
+If the credentials are incorrect, the University Manager sends an authentication failure message to the Gateway. In turn, the Gateway generates and sends an error message to the University, notifying them of the failed login attempt.
+
+This flow ensures that the University can either log in successfully and access their profile or receive an error message if authentication fails.
+
+% //////////////////////////////
+% ------------------------------
+\subsubsection{Upload CV}
+% ------------------------------
+% //////////////////////////////
+
+% ---------------------------------
+% ---------------------------------
+% IMAGE
+\vspace{20pt}
+\hrule
+\vspace{10pt}
+IMAGE
+\vspace{10pt}
+\hrule
+\vspace{20pt}
+% IMAGE
+% ---------------------------------
+% ---------------------------------
+
+The Upload CV process begins when the Student sends their CV to the Gateway Manager through the uploadCV(CV) request. The Gateway Manager forwards this request, along with the CV and Student information, to the Student Manager. The Student Manager then sends a StoreCV(Student, CV) command to the DBMS to store the CV in the database. Once the DBMS successfully stores the CV, it sends an "ok" message to the Student Manager to confirm the storage operation.
+
+The Student Manager, upon receiving the confirmation from the DBMS, sends an "ok" message back to the Gateway Manager. The Gateway Manager then relays the "ok" confirmation to the Student, indicating the successful upload of the CV.
+
+Additionally, the Student Manager sends the InformationForRecommendation data to the Recommendation Manager, so that the uploaded CV can be considered for any relevant recommendations for internships or other opportunities.
+
+This process ensures that the CV is uploaded and stored securely while triggering the subsequent recommendation process for the student.
+
+% //////////////////////////////
+% ------------------------------
+\subsubsection{Upload Project}
+% ------------------------------
+% //////////////////////////////
+
+% ---------------------------------
+% ---------------------------------
+% IMAGE
+\vspace{20pt}
+\hrule
+\vspace{10pt}
+IMAGE
+\vspace{10pt}
+\hrule
+\vspace{20pt}
+% IMAGE
+% ---------------------------------
+% ---------------------------------
+
+The Upload Project process begins when the Company sends the project details to the Gateway Manager through the uploadProject(project) request. The Gateway Manager forwards this request, along with the project and Company information, to the Company Manager. The Company Manager then sends a StoreProject(Company, project) command to the DBMS to store the project in the database. Once the DBMS successfully stores the project, it sends an "ok" message back to the Company Manager to confirm the storage operation.
+
+Upon receiving the confirmation from the DBMS, the Company Manager sends an "ok" message to the Gateway Manager. The Gateway Manager then relays this "ok" confirmation to the Company, indicating the successful upload of the project.
+
+Additionally, the Company Manager sends the InformationForRecommendation data to the Recommendation Manager, so that the uploaded project can be considered for any relevant recommendations.
+
+This process ensures that the project is uploaded and stored properly while initiating the recommendation process for the company.
+
+% //////////////////////////////
+% ------------------------------
+\subsubsection{Start Selection Process}
+% ------------------------------
+% //////////////////////////////
+
+% ---------------------------------
+% ---------------------------------
+% IMAGE
+\vspace{20pt}
+\hrule
+\vspace{10pt}
+IMAGE
+\vspace{10pt}
+\hrule
+\vspace{20pt}
+% IMAGE
+% ---------------------------------
+% ---------------------------------
+
+The Start Selection Process initiates when the Student sends a selectionProcessRequest(internship) to the Gateway Manager, signaling their intent to begin the selection process for a particular internship. The Gateway Manager then forwards this request, including both the internship and student details, to the Selection Process Manager.
+
+Upon receiving the request, the Selection Process Manager sends the selectionProcessRequest(internship, student) to the relevant Company offering the internship. The Company reviews the request and sends a response back to the Selection Process Manager. 
+
+Once the response from the Company is received, the Selection Process Manager communicates to the Gateway Manager, sending the requestSuccessfullySent message to indicate that the selection process request has been successfully initiated. The Gateway Manager then forwards this confirmation to the Student.
+
+Simultaneously, the Selection Process Manager publishes the response to the Selection Process Event Publisher, which then sends the response to the Event Bus. The Notification Event Consumer, which is monitoring the Event Bus for relevant events, consumes the event and processes it accordingly.
+
+Following this, the Notification Event Consumer sends the response to the Notification Manager, which subsequently creates a notification for the Student or Company. The Notification Manager creates a new notification entry and stores it in the DBMS to keep a record of the event.
+
+This sequence ensures that both the Selection Process and corresponding notifications are properly managed and communicated to the involved parties.
+
+% //////////////////////////////
+% ------------------------------
+\subsubsection{Manage Selection Process}
+% ------------------------------
+% //////////////////////////////
+
+% ---------------------------------
+% ---------------------------------
+% IMAGE
+\vspace{20pt}
+\hrule
+\vspace{10pt}
+IMAGE
+\vspace{10pt}
+\hrule
+\vspace{20pt}
+% IMAGE
+% ---------------------------------
+% ---------------------------------
+
+The Manage Selection Process begins when the Selection Process Manager initiates the process. It sends a request for a questionnaire to the Gateway Manager, which is then responsible for forwarding the questionnaire to the Student.
+
+The Student, upon receiving the questionnaire, fills it out and sends the compiled responses back to the Gateway Manager. The Gateway Manager then sends the completed questionnaire to the Selection Process Manager for evaluation.
+
+Following the evaluation, if the questionnaire is deemed successful, the Company sends an interview request to the Gateway Manager. The Gateway Manager forwards this interview request to the Selection Process Manager, which, in turn, sends the request to the Gateway Manager. The Gateway Manager then sends the interview request to the Student.
+
+To proceed with the interview, the Selection Process Manager generates an interview link and sends it to the Gateway Manager. The Gateway Manager then communicates the interview link to both the Student and the Company to facilitate the interview scheduling.
+
+In the case where the questionnaire is deemed unsuccessful, the Company sends the rejected questionnaire to the Gateway Manager. The Gateway Manager forwards the rejection to the Selection Process Manager, and subsequently, notifies the Student about the rejection.
+
+This sequence ensures that the selection process is properly managed, with effective communication between all involved parties, and provides necessary updates regarding interview scheduling or rejections.
+
+% //////////////////////////////
+% ------------------------------
+\subsubsection{Company Uploads Announcement}
+% ------------------------------
+% //////////////////////////////
+
+% ---------------------------------
+% ---------------------------------
+% IMAGE
+\vspace{20pt}
+\hrule
+\vspace{10pt}
+IMAGE
+\vspace{10pt}
+\hrule
+\vspace{20pt}
+% IMAGE
+% ---------------------------------
+% ---------------------------------
+
+The process begins when the Company sends an announcement to the Gateway Manager. Upon receiving the announcement, the Gateway Manager forwards it to the Internship Manager for further processing. The Internship Manager confirms that the announcement has been successfully sent and notifies the Gateway Manager, which, in turn, informs the Company that the announcement has been successfully processed.
+
+Next, the Internship Manager sends the announcement to the Internship Event Publisher, which then publishes the announcement to the Event Bus. The Notification Event Consumer is subscribed to the Event Bus and consumes the event when it is published. The Event Bus forwards the event to the Notification Event Consumer, which then passes the announcement to the Notification Manager.
+
+The Notification Manager processes the announcement and creates a notification in the system by sending a request to the DBMS to store the notification. This ensures that the announcement is communicated to the relevant users, and a notification is generated and stored for future reference.
+
+This sequence ensures that the announcement is successfully transmitted, processed, and stored within the system, while also notifying the appropriate users through the Notification Manager.
+
+% //////////////////////////////
+% ------------------------------
+\subsubsection{Student Communicates To Company}
+% ------------------------------
+% //////////////////////////////
+
+% ---------------------------------
+% ---------------------------------
+% IMAGE
+\vspace{20pt}
+\hrule
+\vspace{10pt}
+IMAGE
+\vspace{10pt}
+\hrule
+\vspace{20pt}
+% IMAGE
+% ---------------------------------
+% ---------------------------------
+
+The process begins when the Student sends a communication request to the Gateway Manager. Upon receiving the request, the Gateway Manager forwards it to the Communication Platform Manager for processing. The Communication Platform Manager confirms the successful transmission of the communication and sends a success response back to the Gateway Manager, which then notifies the Student that the communication has been successfully sent.
+
+Subsequently, the Communication Platform Manager forwards the communication to the Communication Platform Event Publisher, which publishes the event to the Event Bus. The Notification Event Consumer, which is subscribed to the Event Bus, consumes the event as soon as it is published. The Event Bus sends the event to the Notification Event Consumer, which processes the communication and sends it to the Notification Manager.
+
+The Notification Manager then creates a notification in response to the communication and stores it in the DBMS by sending a request to create the notification. This ensures that the communication is logged and notifications are made available to relevant users within the system.
+
+This sequence of events allows for seamless communication between the Student and the Company, along with the appropriate creation and storage of notifications for tracking and future reference.
+
+% //////////////////////////////
+% ------------------------------
+\subsubsection{Ask Feedback}
+% ------------------------------
+% //////////////////////////////
+
+% ---------------------------------
+% ---------------------------------
+% IMAGE
+\vspace{20pt}
+\hrule
+\vspace{10pt}
+IMAGE
+\vspace{10pt}
+\hrule
+\vspace{20pt}
+% IMAGE
+% ---------------------------------
+% ---------------------------------
+
+The process begins with the Feedback\&Complaint Manager initiating a feedback request, which is sent to the Gateway Manager. Upon receiving this request, the Gateway Manager forwards it to the Student, prompting them to provide feedback. The Student then responds by sending their feedback to the Gateway Manager, which subsequently forwards the response to the Feedback\&Complaint Manager. The Feedback\&Complaint Manager stores the feedback in the DBMS by sending a request to create a new feedback entry.
+
+Simultaneously, the Gateway Manager also sends a feedback request to the Company. The Company responds by providing their feedback, which is sent back to the Gateway Manager. The Gateway Manager then forwards this feedback to the Feedback\&Complaint Manager, which once again stores the feedback in the DBMS by creating a new feedback entry.
+
+This flow ensures that both the Student and Company are able to submit their feedback, which is then securely stored in the system for future reference or analysis.
+
+% //////////////////////////////
+% ------------------------------
+\subsubsection{Make Complaint}
+% ------------------------------
+% //////////////////////////////
+
+% ---------------------------------
+% ---------------------------------
+% IMAGE
+\vspace{20pt}
+\hrule
+\vspace{10pt}
+IMAGE
+\vspace{10pt}
+\hrule
+\vspace{20pt}
+% IMAGE
+% ---------------------------------
+% ---------------------------------
+
+The process begins when the Student submits a complaint to the Gateway Manager. Upon receiving the complaint, the Gateway Manager forwards it to the Feedback\&Complaint Manager for further processing. The Feedback\&Complaint Manager acknowledges receipt of the complaint by sending an "ok" response to the Gateway Manager, which then sends a confirmation back to the Student. The Feedback\&Complaint Manager also stores the complaint in the DBMS by creating a new complaint entry.
+
+Similarly, the Company can also file a complaint by sending it to the Gateway Manager. The Gateway Manager passes this complaint along to the Feedback\&Complaint Manager. After receiving the complaint, the Feedback\&Complaint Manager sends an "ok" response to the Gateway Manager, which in turn confirms the action with the Company. Finally, the Feedback\&Complaint Manager stores the Company's complaint in the DBMS by creating a new complaint entry.
+
+This process ensures that complaints from both the Student and Company are properly received, acknowledged, and stored in the system.
+
+% //////////////////////////////
+% ------------------------------
+\subsubsection{Conduct Statistical Analysis}
+% ------------------------------
+% //////////////////////////////
+
+% ---------------------------------
+% ---------------------------------
+% IMAGE
+\vspace{20pt}
+\hrule
+\vspace{10pt}
+IMAGE
+\vspace{10pt}
+\hrule
+\vspace{20pt}
+% IMAGE
+% ---------------------------------
+% ---------------------------------
+
+The process begins when the Statistical Analysis Tool sends a request to process the data, which includes preliminary data, feedback, and complaints, to itself. After processing the data, the Statistical Analysis Tool sends the processed recommendation data to the Recommendation System Manager for further use. Simultaneously, the tool sends the processed complaint data to the Feedback\&Complaint Manager for analysis and management.
+
+This sequence of events ensures that both recommendation data and complaint data are appropriately processed and made available to their respective managers for further action.
+
+% //////////////////////////////
+% ------------------------------
+\subsubsection{Send Recommendations}
+% ------------------------------
+% //////////////////////////////
+
+% ---------------------------------
+% ---------------------------------
+% IMAGE
+\vspace{20pt}
+\hrule
+\vspace{10pt}
+IMAGE
+\vspace{10pt}
+\hrule
+\vspace{20pt}
+% IMAGE
+% ---------------------------------
+% ---------------------------------
+
+The process begins when the Recommendation System Manager sends a request to the Recommendation System Event Publisher to publish a new recommendation event. The event publisher then forwards this publish request to the Event Bus, where the Notification Event Consumer is actively listening for such events. Upon receiving the event, the Notification Event Consumer processes it and generates a new recommendation with the recipient and content details. 
+
+Subsequently, the Notification Manager is tasked with creating the corresponding notification. The notification data is sent to the DBMS for storage, and the DBMS confirms the successful storage of the notification by sending an "ok" response to the Notification Manager.
+
+This sequence ensures that the recommendation is successfully disseminated and stored for future access.
+
+% //////////////////////////////
+% ------------------------------
+\subsubsection{Report Complaints}
+% ------------------------------
+% //////////////////////////////
+
+% ---------------------------------
+% ---------------------------------
+% IMAGE
+\vspace{20pt}
+\hrule
+\vspace{10pt}
+IMAGE
+\vspace{10pt}
+\hrule
+\vspace{20pt}
+% IMAGE
+% ---------------------------------
+% ---------------------------------
+
+The process begins when the Complaints Manager sends a request to the Complaints Event Publisher to publish a complaints report event. The Complaints Event Publisher then forwards this event to the Event Bus, where the Notification Event Consumer is monitoring for incoming events. Upon detecting the event, the Notification Event Consumer processes the complaint and generates a new complaints report, which includes the recipient university and the content of the complaint.
+
+Following this, the Notification Manager is responsible for creating a notification based on the generated complaints report. The notification details are sent to the DBMS for storage, and the DBMS responds with an "ok" message to confirm the successful storage of the notification.
+
+This sequence ensures that complaints are reported, notifications are generated, and the system maintains an up-to-date record of all complaints.
+
+% //////////////////////////////
+% ------------------------------
+\subsubsection{Interrupt Internship}
+% ------------------------------
+% //////////////////////////////
+
+% ---------------------------------
+% ---------------------------------
+% IMAGE
+\vspace{20pt}
+\hrule
+\vspace{10pt}
+IMAGE
+\vspace{10pt}
+\hrule
+\vspace{20pt}
+% IMAGE
+% ---------------------------------
+% ---------------------------------
+
+The process begins when the University sends an InterruptInternshipRequest to the Gateway Manager. Upon receiving this request, the Gateway Manager forwards the InterruptInternship command to the Internship Manager. The Internship Manager processes the interruption request and sends an "ok" confirmation to the Gateway Manager, which in turn sends a corresponding "ok" message to the University.
+
+Subsequently, the Internship Manager notifies the Student Manager and Company Manager about the removal of the internship association by sending an AssociationRemoved message to both. The Internship Manager then triggers the publishing of an event by sending a publishEvent request to the Internship Event Publisher, which subsequently forwards the event to the Event Bus.
+
+The Notification Event Consumer, which is actively listening for events on the Event Bus, consumes the event and processes it. The Event Bus transmits the event to the Notification Event Consumer, which generates a new notification with the details of the interrupted internship, including the student and company involved. This information is sent to the Notification Manager, which is responsible for creating the notification in the system.
+
+Finally, the Notification Manager stores the notification in the DBMS by sending a createNotification request, and the DBMS responds with an "ok" to confirm the successful storage of the notification.
+
+% //////////////////////////////
+% ------------------------------
 \section{Component Interfaces}
+% ------------------------------
+% //////////////////////////////
+
+
 
 \section{Selected Architectural Styles and Patterns}
 \subsection{Database Management}
