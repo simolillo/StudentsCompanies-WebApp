@@ -776,7 +776,84 @@ Finally, the Notification Manager stores the notification in the DBMS by sending
 % ------------------------------
 % //////////////////////////////
 
+% TODO
 
-
+% //////////////////////////////
+% ------------------------------
 \section{Selected Architectural Styles and Patterns}
+% ------------------------------
+% //////////////////////////////
+
+This section outlines the key architectural decisions made during the design of the system, providing insight into the reasoning behind each choice. The objective is to develop a solution that not only addresses the current needs but also offers room for future growth and adaptation. By offering a detailed perspective, this section ensures that both developers and stakeholders gain a clear understanding of how these decisions support the system’s ongoing evolution and overall success.
+
+% //////////////////////////////
+% ------------------------------
+\subsubsection{Microservices Architecture}
+% ------------------------------
+% //////////////////////////////
+
+The decision to implement a microservices architecture stems from various factors that enhance the flexibility and scalability of the application:
+
+\begin{itemize}
+    \item \textbf{Scalability:} Microservices enable the independent scaling of individual components, allowing for targeted resource allocation without the need to scale the entire system, resulting in an agile and adaptable application.
+    \item \textbf{Fault Tolerance:} Microservices architecture reduces the risk of system-wide failures. By isolating services, a failure in one module has minimal impact on others, ensuring the system remains operational.
+    \item \textbf{Deployment and Productivity:} Microservices promote continuous integration and delivery processes. The separation of concerns across services increases team efficiency, with each member focusing on a specific service, thus fostering better collaboration.
+    \item \textbf{Maintainability:} Microservices simplify the management and maintenance of the system by decoupling services, making it easier to work on individual components without having to understand the entire system, ultimately improving overall system maintainability.
+\end{itemize}
+
+% //////////////////////////////
+% ------------------------------
+\subsubsection{RESTful APIs}
+% ------------------------------
+% //////////////////////////////
+
+The decision to utilize the REST architectural style for developing our APIs enables a scalable, efficient, and interoperable communication framework. This approach brings several significant benefits:
+
+\begin{itemize}
+    \item \textbf{Simplicity and Intuitiveness:} RESTful APIs are designed around standard HTTP methods, ensuring an easy-to-understand and intuitive communication model.
+    \item \textbf{Scalability:} By being stateless, REST facilitates horizontal scalability, allowing the system to handle increased load by adding more instances without complex coordination between them.
+    \item \textbf{Flexibility and Modularity:} REST APIs promote a clean, modular architecture, with each microservice managing a specific data domain. This separation of concerns enhances maintainability and clarity in the system.
+    \item \textbf{Interoperability:} Since REST relies on universal HTTP protocols, it ensures cross-platform compatibility, enabling seamless integration with various technologies and devices.
+    \item \textbf{Statelessness:} The stateless nature of REST simplifies server-side logic and error recovery, enhancing system reliability and making the application more resilient to failures.
+\end{itemize}
+
+% //////////////////////////////
+% ------------------------------
+\subsubsection{Model-View-Controller (MVC)}
+% ------------------------------
+% //////////////////////////////
+
+The implementation of the Model-View-Controller (MVC) architecture provides a structured, maintainable, and scalable foundation for the application. This design choice offers several advantages:
+
+\begin{itemize}
+    \item \textbf{Modular Organization:} MVC splits the Manager components within the microservices into three distinct sections: Model, View, and Controller. This organization improves code readability, simplifies debugging, and allows each component to be developed independently.
+    \item \textbf{Separation of Concerns:} By enforcing a clear distinction between the different parts of the application, MVC simplifies development and enables easier maintenance, extension, and modification of individual components without unintended consequences for others.
+    \item \textbf{Reusability and Extensibility:} The modular nature of MVC fosters code reusability, allowing developers to reuse components across different areas of the application or even in future projects.
+    \item \textbf{Testability:} MVC enhances the ability to test the application, allowing for isolated testing of each component. This ensures that each part functions correctly and contributes to a more stable system.
+    \item \textbf{Improved Collaboration:} The division of responsibilities in MVC facilitates team collaboration, as different developers can work on the Model, View, or Controller independently, streamlining the development process.
+\end{itemize}
+
+% //////////////////////////////
+% ------------------------------
+\subsubsection{Event-Driven Architecture (EDA)}
+% ------------------------------
+% //////////////////////////////
+
+The adoption of Event-Driven Architecture (EDA) is pivotal in enhancing real-time responsiveness and scalable communication in the Student\&Companies system. Specifically, this architecture supports asynchronous notifications, enabling seamless interaction between the various components, including the Notification Consumer, Selection Process Publisher, and Internship Publisher. These components generate events when specific actions occur, such as the start or end of a selection process or internship. The Notification Consumer can then asynchronously process these events, crafting the necessary notifications for the involved parties without interrupting the core functionalities of the Selection Process and Internship microservices.
+
+In addition to enabling asynchronous processes, EDA brings several key advantages to the system:
+
+\begin{itemize}
+    \item \textbf{Decoupled Components:} EDA promotes a decoupled architecture, where components communicate through events. This flexibility allows the independent development, testing, and deployment of each component, ensuring minimal dependencies between them.
+    \item \textbf{Scalability:} EDA supports scalability by distributing services and components across the system. This asynchronous nature ensures the system can handle varying loads efficiently, adapting to increasing demands without compromising performance.
+\end{itemize}
+
+% //////////////////////////////
+% ------------------------------
 \subsection{Database Management}
+% ------------------------------
+% //////////////////////////////
+
+The data layer of the Student\&Companies application consists of a centralized database that ensures persistent data storage and access for all microservices within the system. This design is motivated by the fact that, while each microservice in the system focuses on different functionalities, they often need to interact with overlapping sets of data (such as student profiles, company internships, and feedback). By using a shared database, the system facilitates consistent data management and seamless data sharing across microservices.
+
+In terms of database management, internal partitions are implemented to segregate data for different microservices. To ensure reliability and high availability, each partition is replicated.
