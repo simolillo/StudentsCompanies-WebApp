@@ -374,13 +374,13 @@ IMAGE
 % ---------------------------------
 % ---------------------------------
 
-The Student Log In process begins when the Student submits their credentials (username and password) to the Gateway Microservice. The Gateway then forwards these credentials to the University API for authentication. If the credentials are valid, the University API confirms the successful authentication by sending an "authentication ok" message back to the Gateway. In response, the Gateway sends the username to the Student Manager, which checks if the student is a new user.
+The Student Log In process begins when the Student submits their credentials (username and password) to the Gateway Microservice. The Gateway forwards these credentials to the Student Manager for authentication. If the credentials are valid, the Student Manager confirms the successful authentication by sending an "authentication ok" message to the Gateway Microservice. The Gateway then notifies the Student Manager of the user's access by transmitting the username.
 
-If the Student is a new user, the Student Manager requests the DBMS to store the student's information. Afterward, the Student Manager retrieves the user profile and sends it back to the Gateway Microservice. The Gateway then delivers the user profile to the Student, completing the login process.
+If the Student is identified as a new user, the Student Manager requests the DBMS to store the student's information. Subsequently, the Student Manager retrieves the user's profile and sends it back to the Gateway Microservice, which in turn delivers the profile to the Student, finalizing the login process.
 
-However, if the credentials are invalid, the University API notifies the Gateway Microservice of the authentication failure. The Gateway then generates and sends an error message to the Student, informing them that the login attempt was unsuccessful.
+In cases where the credentials are invalid, the Student Manager notifies the Gateway Microservice of the authentication failure. The Gateway then generates and sends an error message to the Student, informing them of the unsuccessful login attempt.
 
-This sequence ensures that students either gain access to their profiles upon successful authentication or receive an error message when the authentication fails.
+This sequence ensures that authenticated students gain seamless access to their profiles, while unsuccessful attempts are met with clear feedback to guide corrective action.
 
 % //////////////////////////////
 % ------------------------------
