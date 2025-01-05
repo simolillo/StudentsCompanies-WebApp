@@ -832,7 +832,7 @@ The tables below are organized by microservice for better clarity and navigation
 % //////////////////////////////
 
 \begin{longtable}{p{0.25\textwidth}p{0.35\textwidth}p{0.35\textwidth}}
-    \caption{API Name}
+    \caption{DiscoveryServiceAPI}
     \vspace{0.5em}\\
     \hline
     \vspace{0.5em}\\
@@ -860,17 +860,106 @@ The tables below are organized by microservice for better clarity and navigation
     \vspace{0.5em}\\
     \endlastfoot
     
-    lorem ipsum &
-    ipsum lorem &
-    ipsum ipsum. \\
+    URL &
+    findService(String serviceName) &
+    This method is offered
+    to allow all microservices
+    to locate each other and
+    therefore collaborate. \\
     \vspace{0.5em}\\
-    lorem ipsum &
-    ipsum lorem &
-    ipsum ipsum. \\
+    void &
+    registerService(String serviceName, URL location) &
+    This method allows a
+    newly-created service to
+    register itself on the list of
+    available services, in order
+    to be located by the other
+    microservices if needed. \\
     \vspace{0.5em}\\
-    lorem ipsum &
-    ipsum lorem &
-    ipsum ipsum. \\
+    List<URL> &
+    allServices() &
+    This method returns a list
+    of all the available services
+    at the moment in the sys-
+    tem. \\
+
+\end{longtable}
+
+\begin{longtable}{p{0.25\textwidth}p{0.35\textwidth}p{0.35\textwidth}}
+    \caption{GatewayControllerAPI}
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \textbf{Return Type} & \textbf{Signature} & \textbf{Description} \\
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \endfirsthead
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \textbf{Return Type} & \textbf{Signature} & \textbf{Description} \\
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \endhead
+    
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \endfoot
+    
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \endlastfoot
+    
+    String &
+    /selectRole &
+    Allows to select the role of a user (either student, company or university). \\
+    \vspace{0.5em}\\
+    NotificationView &
+    /notification &
+    Gets the list of notifications for the current user. \\
+    \vspace{0.5em}\\
+    PersonalProfile &
+    /profile &
+    Returns the personal profile of the current user. \\
+    \vspace{0.5em}\\
+    Create InternshipView &
+    /create-internship &
+    Returns the view to create
+    a new internship for an
+    authenticated company.
+    \vspace{0.5em}\\
+    Create CVView &
+    /create-cv &
+    Returns the view to create a new CV
+    for an authenticated student. \\
+    \vspace{0.5em}\\
+    Boolean &
+    /isInternshipAvailable &
+    Returns a boolean value representing whether the internship is available or not. The internship name can be passed as parameter to the API call.
+    \vspace{0.5em}\\
+    StudentProfileView &
+    /sendApplication &
+    Sends the student's application to an internship and returns to the student prodile view. The internship name and the username of the user can be passed as parameters to the API call.
+    \vspace{0.5em}\\
+    List<String> &
+    /all-internships-abs &
+    Returns all the internships on S\&C.
+    \vspace{0.5em}\\
+    List<String> &
+    /all-internships-company &
+    Returns all the interships from a specific company. The username of the company can be passed as a parameter to the API call.
+    \vspace{0.5em}\\
+    String &
+    /internship-detail &
+    Returns the details of a specific internship. The internship name can be passed as a parameter to the API call.
+    \vspace{0.5em}\\
+    String &
+    /CV-detail &
+    Returns the details of a specific student CV. The student username can be passed as a parameter to the API call.
 
 \end{longtable}
 
@@ -881,7 +970,7 @@ The tables below are organized by microservice for better clarity and navigation
 % //////////////////////////////
 
 \begin{longtable}{p{0.25\textwidth}p{0.35\textwidth}p{0.35\textwidth}}
-    \caption{API Name}
+    \caption{UserAPI}
     \vspace{0.5em}\\
     \hline
     \vspace{0.5em}\\
@@ -909,17 +998,17 @@ The tables below are organized by microservice for better clarity and navigation
     \vspace{0.5em}\\
     \endlastfoot
     
-    lorem ipsum &
-    ipsum lorem &
-    ipsum ipsum. \\
+    Integer &
+    /getUserRole &
+    Returns the role of the specified user, the username can be passed to the API call as a parameter. \\
     \vspace{0.5em}\\
-    lorem ipsum &
-    ipsum lorem &
-    ipsum ipsum. \\
+    Boolean &
+    /userExists &
+    Checks whether the user accessing the system is a new user or not. The username can be passed as a parameter to the API call. \\
     \vspace{0.5em}\\
-    lorem ipsum &
-    ipsum lorem &
-    ipsum ipsum. \\
+    void &
+    /saveUser &
+    Adds a new user on S\&C, the username and the role can be passed as parameters to the API call. \\
 
 \end{longtable}
 
@@ -930,7 +1019,7 @@ The tables below are organized by microservice for better clarity and navigation
 % //////////////////////////////
 
 \begin{longtable}{p{0.25\textwidth}p{0.35\textwidth}p{0.35\textwidth}}
-    \caption{API Name}
+    \caption{NotificationAPI}
     \vspace{0.5em}\\
     \hline
     \vspace{0.5em}\\
@@ -958,17 +1047,56 @@ The tables below are organized by microservice for better clarity and navigation
     \vspace{0.5em}\\
     \endlastfoot
     
-    lorem ipsum &
-    ipsum lorem &
-    ipsum ipsum. \\
+    List<Notification> &
+    /getNotifications(String userId) &
+    Retrieves all notifications for a specific user. \\
     \vspace{0.5em}\\
-    lorem ipsum &
-    ipsum lorem &
-    ipsum ipsum. \\
+    Boolean &
+    /markAsRead(String notificationId) &
+    Marks a specific notification as read. \\
     \vspace{0.5em}\\
-    lorem ipsum &
-    ipsum lorem &
-    ipsum ipsum. \\
+    Boolean &
+    /sendNotification(Notification notification) &
+    Sends a notification to a user or group of users. \\
+
+\end{longtable}
+
+\begin{longtable}{p{0.25\textwidth}p{0.35\textwidth}p{0.35\textwidth}}
+    \caption{Notification - EventConsumer}
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \textbf{Return Type} & \textbf{Signature} & \textbf{Description} \\
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \endfirsthead
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \textbf{Return Type} & \textbf{Signature} & \textbf{Description} \\
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \endhead
+    
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \endfoot
+    
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \endlastfoot
+    
+    Event &
+    consumeEvent() &
+    Reads an event from the event bus.
+    \vspace{0.5em}\\
+    List<Event> &
+    consumeAllEvents() &
+    Reads all the events published on the event bus. \\
 
 \end{longtable}
 
@@ -979,7 +1107,7 @@ The tables below are organized by microservice for better clarity and navigation
 % //////////////////////////////
 
 \begin{longtable}{p{0.25\textwidth}p{0.35\textwidth}p{0.35\textwidth}}
-    \caption{API Name}
+    \caption{RecommendationAPI}
     \vspace{0.5em}\\
     \hline
     \vspace{0.5em}\\
@@ -1007,17 +1135,56 @@ The tables below are organized by microservice for better clarity and navigation
     \vspace{0.5em}\\
     \endlastfoot
     
-    lorem ipsum &
-    ipsum lorem &
-    ipsum ipsum. \\
+    List<Internship> &
+    /getRecommendations(String studentId) &
+    Provides a list of internship recommendations for a student. \\
     \vspace{0.5em}\\
-    lorem ipsum &
-    ipsum lorem &
-    ipsum ipsum. \\
+    List<CV> &
+    /getRecommendations(String companyId) &
+    Provides a list of CV recommendations for a company. \\
     \vspace{0.5em}\\
-    lorem ipsum &
-    ipsum lorem &
-    ipsum ipsum. \\
+    Boolean &
+    /submitPreferences(String userId, Preferences preferences) &
+    Updates the user's preferences for recommendation refinement. \\
+    \vspace{0.5em}\\
+    FeedbackReport &
+    /analyzeFeedback() &
+    Analyzes feedback data to improve recommendation algorithms. \\
+
+\end{longtable}
+
+\begin{longtable}{p{0.25\textwidth}p{0.35\textwidth}p{0.35\textwidth}}
+    \caption{Recommendation - EventPublisher}
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \textbf{Return Type} & \textbf{Signature} & \textbf{Description} \\
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \endfirsthead
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \textbf{Return Type} & \textbf{Signature} & \textbf{Description} \\
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \endhead
+    
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \endfoot
+    
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \endlastfoot
+    
+    void &
+    publishEvent(Event) &
+    Publishes an event on the event bus. \\
 
 \end{longtable}
 
@@ -1028,7 +1195,7 @@ The tables below are organized by microservice for better clarity and navigation
 % //////////////////////////////
 
 \begin{longtable}{p{0.25\textwidth}p{0.35\textwidth}p{0.35\textwidth}}
-    \caption{API Name}
+    \caption{CommunicationAPI}
     \vspace{0.5em}\\
     \hline
     \vspace{0.5em}\\
@@ -1056,17 +1223,52 @@ The tables below are organized by microservice for better clarity and navigation
     \vspace{0.5em}\\
     \endlastfoot
     
-    lorem ipsum &
-    ipsum lorem &
-    ipsum ipsum. \\
+    Boolean &
+    /sendMessage(String senderId, String receiverId, String message) &
+    Sends a message between a student and a company or viceversa. \\
     \vspace{0.5em}\\
-    lorem ipsum &
-    ipsum lorem &
-    ipsum ipsum. \\
+    List<Message> &
+    /getMessages(String userId, String conversationId) &
+    Retrieves all messages for a specific conversation. \\
     \vspace{0.5em}\\
-    lorem ipsum &
-    ipsum lorem &
-    ipsum ipsum. \\
+    Boolean &
+    /createGroupChat(List<String> participantIds) &
+    Creates a group chat for multiple participants. \\
+
+\end{longtable}
+
+\begin{longtable}{p{0.25\textwidth}p{0.35\textwidth}p{0.35\textwidth}}
+    \caption{Communication - EventPublisher}
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \textbf{Return Type} & \textbf{Signature} & \textbf{Description} \\
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \endfirsthead
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \textbf{Return Type} & \textbf{Signature} & \textbf{Description} \\
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \endhead
+    
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \endfoot
+    
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \endlastfoot
+    
+    void &
+    publishEvent(Event) &
+    Publishes an event on the event bus. \\
 
 \end{longtable}
 
@@ -1077,7 +1279,7 @@ The tables below are organized by microservice for better clarity and navigation
 % //////////////////////////////
 
 \begin{longtable}{p{0.25\textwidth}p{0.35\textwidth}p{0.35\textwidth}}
-    \caption{API Name}
+    \caption{SelectionProcessAPI}
     \vspace{0.5em}\\
     \hline
     \vspace{0.5em}\\
@@ -1105,17 +1307,52 @@ The tables below are organized by microservice for better clarity and navigation
     \vspace{0.5em}\\
     \endlastfoot
     
-    lorem ipsum &
-    ipsum lorem &
-    ipsum ipsum. \\
+    Boolean &
+    /scheduleInterview(String studentId, String companyId, Date date) &
+    Schedules an interview between a student and a company. \\
     \vspace{0.5em}\\
-    lorem ipsum &
-    ipsum lorem &
-    ipsum ipsum. \\
+    List<Questionnaire> &
+    /getQuestionnaire(String processId) &
+    Retrieves the questionnaire for a specific selection process. \\
     \vspace{0.5em}\\
-    lorem ipsum &
-    ipsum lorem &
-    ipsum ipsum. \\
+    Boolean &
+    /finalizeSelection(String processId, String studentId) &
+    Finalizes the selection and assigns a student to the internship. \\
+
+\end{longtable}
+
+\begin{longtable}{p{0.25\textwidth}p{0.35\textwidth}p{0.35\textwidth}}
+    \caption{SelectionProcess - EventPublisher}
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \textbf{Return Type} & \textbf{Signature} & \textbf{Description} \\
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \endfirsthead
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \textbf{Return Type} & \textbf{Signature} & \textbf{Description} \\
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \endhead
+    
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \endfoot
+    
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \endlastfoot
+    
+    void &
+    publishEvent(Event) &
+    Publishes an event on the event bus. \\
 
 \end{longtable}
 
@@ -1126,7 +1363,7 @@ The tables below are organized by microservice for better clarity and navigation
 % //////////////////////////////
 
 \begin{longtable}{p{0.25\textwidth}p{0.35\textwidth}p{0.35\textwidth}}
-    \caption{API Name}
+    \caption{InternshipManagementAPI}
     \vspace{0.5em}\\
     \hline
     \vspace{0.5em}\\
@@ -1154,17 +1391,56 @@ The tables below are organized by microservice for better clarity and navigation
     \vspace{0.5em}\\
     \endlastfoot
     
-    lorem ipsum &
-    ipsum lorem &
-    ipsum ipsum. \\
+    Boolean &
+    /createInternship(Internship internship) &
+    Allows companies to create a new internship. \\
     \vspace{0.5em}\\
-    lorem ipsum &
-    ipsum lorem &
-    ipsum ipsum. \\
+    Boolean &
+    /updateInternship(String internshipId, Internship internship) &
+    Updates an existing internship's details. \\
     \vspace{0.5em}\\
-    lorem ipsum &
-    ipsum lorem &
-    ipsum ipsum. \\
+    List<Internship> &
+    /getAllInternships(String companyId) &
+    Retrieves all internships created by a specific company. \\
+    \vspace{0.5em}\\
+    Boolean &
+    /deleteInternship(String internshipId) &
+    Deletes a specific internship. \\
+
+\end{longtable}
+
+\begin{longtable}{p{0.25\textwidth}p{0.35\textwidth}p{0.35\textwidth}}
+    \caption{InternshipManagement - EventPublisher}
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \textbf{Return Type} & \textbf{Signature} & \textbf{Description} \\
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \endfirsthead
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \textbf{Return Type} & \textbf{Signature} & \textbf{Description} \\
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \endhead
+    
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \endfoot
+    
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \endlastfoot
+    
+    void &
+    publishEvent(Event) &
+    Publishes an event on the event bus. \\
 
 \end{longtable}
 
@@ -1175,7 +1451,7 @@ The tables below are organized by microservice for better clarity and navigation
 % //////////////////////////////
 
 \begin{longtable}{p{0.25\textwidth}p{0.35\textwidth}p{0.35\textwidth}}
-    \caption{API Name}
+    \caption{Feedback\&ComplaintAPI}
     \vspace{0.5em}\\
     \hline
     \vspace{0.5em}\\
@@ -1203,17 +1479,60 @@ The tables below are organized by microservice for better clarity and navigation
     \vspace{0.5em}\\
     \endlastfoot
     
-    lorem ipsum &
-    ipsum lorem &
-    ipsum ipsum. \\
+    Boolean &
+    /submitFeedback(String userId, Feedback feedback) &
+    Allows users to submit feedback about internships or processes. \\
     \vspace{0.5em}\\
-    lorem ipsum &
-    ipsum lorem &
-    ipsum ipsum. \\
+    Boolean &
+    /submitComplaint(String userId, Complaint complaint) &
+    Allows users to submit a complaint regarding internships. \\
     \vspace{0.5em}\\
-    lorem ipsum &
-    ipsum lorem &
-    ipsum ipsum. \\
+    List<Feedback> &
+    /getFeedback(String internshipId) &
+    Retrieves all feedback associated with a specific internship. \\
+    \vspace{0.5em}\\
+    List<Complaint> &
+    /getComplaint(String internshipId) &
+    Retrieves all complaints associated with a specific internship. \\
+    \vspace{0.5em}\\
+    ComplaintStatus &
+    /getComplaintStatus(String complaintId) &
+    Retrieves the status of a submitted complaint. \\
+
+\end{longtable}
+
+\begin{longtable}{p{0.25\textwidth}p{0.35\textwidth}p{0.35\textwidth}}
+    \caption{Feedback\&Complaint - EventPublisher}
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \textbf{Return Type} & \textbf{Signature} & \textbf{Description} \\
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \endfirsthead
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \textbf{Return Type} & \textbf{Signature} & \textbf{Description} \\
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \endhead
+    
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \endfoot
+    
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \endlastfoot
+    
+    void &
+    publishEvent(Event) &
+    Publishes an event on the event bus. \\
 
 \end{longtable}
 
