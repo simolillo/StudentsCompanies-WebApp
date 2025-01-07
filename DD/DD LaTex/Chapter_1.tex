@@ -54,18 +54,25 @@ functionality. Finally, the shared database layer ensures consistency in data st
 maintaining information about users, internships, recommendations, and feedback.
 
 To manage interactions between microservices, the platform uses a combination of communication
-patterns based on specific functional needs. For real-time or asynchronous interactions, an
+patterns based on specific functional needs. For asynchronous interactions, an
 event-driven communication model is employed. In this approach, some microservices act as event
 publishers while others function as consumers. For example, the Notification Microservice processes
 events related to complaints, messages, and new recommendations, while other services publish events
 to reflect changes in system states, such as the pubblication of a new message on the communication platform
 or the acceptance of a student for an interview.
  
-For functionalities that do not require immediate interactions, synchronous communication mechanisms
+For functionalities that require immediate interactions, synchronous communication mechanisms
 are used. This includes scenarios such as retrieving a list of internships or submitting CVs, where
 sequential processing and immediate feedback are necessary. The combination of event-driven and
 synchronous communication ensures that the system remains both responsive and straightforward to
 use, catering to the dynamic needs of its users.
+
+Various architectural patterns are utilized in the design to ensure efficient communication between
+microservices. The Student\&Company microservices expose RESTful APIs, enabling them to handle
+external requests and return data or perform computations as needed. Internally, an event-driven
+architecture is implemented to enhance performance and minimize coupling among microservices.
+Additionally, the Model-View-Controller (MVC) pattern is adopted to separate responsibilities,
+ensuring a clear distinction between managing incoming requests and rendering graphical user interfaces.
 
 All these architectural choices are just mentioned here to provide an overview of the system; they
 will be better explained and unpacked down the line of this document. The following image shows
@@ -220,8 +227,6 @@ Here’s a list of reference documents that have been used in order to shape the
     Link: \url{https://ieeexplore.ieee.org/document/8559686}
     \item UML specifications, version 2.5.1. \\
     Link: \url{https://www.omg.org/spec/UML/2.5.1/About-UML}
-    \item Alloy documentation, version 6.1.0.8. \\
-    Link: \url{https://alloy.readthedocs.io/en/latest/}
 \end{enumerate}
 
 \newpage
