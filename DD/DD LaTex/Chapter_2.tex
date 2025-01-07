@@ -497,9 +497,9 @@ This flow ensures that the University can either log in successfully and access 
 % ---------------------------------
 % ---------------------------------
 
-The Upload CV process begins when the Student sends their CV to the Gateway Manager through the uploadCV(CV) request. The Gateway Manager forwards this request, along with the CV and Student information, to the Student Manager. The Student Manager then sends a StoreCV(Student, CV) command to the DBMS to store the CV in the database. Once the DBMS successfully stores the CV, it sends an "ok" message to the Student Manager to confirm the storage operation.
+The Upload CV process begins when the Student sends their CV to the Gateway Manager through the uploadCV(CV) request. The Gateway Manager forwards this request, along with the CV and Student information, to the Student Manager. The Student Manager then sends a StoreCV(Student, CV) command to the DBMS to store the CV in the database. Once the DBMS successfully stores the CV, it sends an "ACK" message to the Student Manager to confirm the storage operation.
 
-The Student Manager, upon receiving the confirmation from the DBMS, sends an "ok" message back to the Gateway Manager. The Gateway Manager then relays the "ok" confirmation to the Student, indicating the successful upload of the CV.
+The Student Manager, upon receiving the confirmation from the DBMS, sends an "ACK" message back to the Gateway Manager. The Gateway Manager then relays the "ACK" confirmation to the Student, indicating the successful upload of the CV.
 
 Additionally, the Student Manager sends the InformationForRecommendation data to the Recommendation Manager, so that the uploaded CV can be considered for any relevant recommendations for internships or other opportunities.
 
@@ -528,9 +528,9 @@ This process ensures that the CV is uploaded and stored securely while triggerin
 % ---------------------------------
 % ---------------------------------
 
-The Upload Project process begins when the Company sends the project details to the Gateway Manager through the uploadProject(project) request. The Gateway Manager forwards this request, along with the project and Company information, to the Company Manager. The Company Manager then sends a StoreProject(Company, project) command to the DBMS to store the project in the database. Once the DBMS successfully stores the project, it sends an "ok" message back to the Company Manager to confirm the storage operation.
+The Upload Project process begins when the Company sends the project details to the Gateway Manager through the uploadProject(project) request. The Gateway Manager forwards this request, along with the project and Company information, to the Company Manager. The Company Manager then sends a StoreProject(Company, project) command to the DBMS to store the project in the database. Once the DBMS successfully stores the project, it sends an "ACK" message back to the Company Manager to confirm the storage operation.
 
-Upon receiving the confirmation from the DBMS, the Company Manager sends an "ok" message to the Gateway Manager. The Gateway Manager then relays this "ok" confirmation to the Company, indicating the successful upload of the project.
+Upon receiving the confirmation from the DBMS, the Company Manager sends an "ACK" message to the Gateway Manager. The Gateway Manager then relays this "ACK" confirmation to the Company, indicating the successful upload of the project.
 
 Additionally, the Company Manager sends the InformationForRecommendation data to the Recommendation Manager, so that the uploaded project can be considered for any relevant recommendations.
 
@@ -720,9 +720,9 @@ This flow ensures that both the Student and Company are able to submit their fee
 % ---------------------------------
 % ---------------------------------
 
-The process begins when the Student submits a complaint to the Gateway Manager. Upon receiving the complaint, the Gateway Manager forwards it to the Feedback\&Complaint Manager for further processing. The Feedback\&Complaint Manager acknowledges receipt of the complaint by sending an "ok" response to the Gateway Manager, which then sends a confirmation back to the Student. The Feedback\&Complaint Manager also stores the complaint in the DBMS by creating a new complaint entry.
+The process begins when the Student submits a complaint to the Gateway Manager. Upon receiving the complaint, the Gateway Manager forwards it to the Feedback\&Complaint Manager for further processing. The Feedback\&Complaint Manager acknowledges receipt of the complaint by sending an "ACK" response to the Gateway Manager, which then sends a confirmation back to the Student. The Feedback\&Complaint Manager also stores the complaint in the DBMS by creating a new complaint entry.
 
-Similarly, the Company can also file a complaint by sending it to the Gateway Manager. The Gateway Manager passes this complaint along to the Feedback\&Complaint Manager. After receiving the complaint, the Feedback\&Complaint Manager sends an "ok" response to the Gateway Manager, which in turn confirms the action with the Company. Finally, the Feedback\&Complaint Manager stores the Company's complaint in the DBMS by creating a new complaint entry.
+Similarly, the Company can also file a complaint by sending it to the Gateway Manager. The Gateway Manager passes this complaint along to the Feedback\&Complaint Manager. After receiving the complaint, the Feedback\&Complaint Manager sends an "ACK" response to the Gateway Manager, which in turn confirms the action with the Company. Finally, the Feedback\&Complaint Manager stores the Company's complaint in the DBMS by creating a new complaint entry.
 
 This process ensures that complaints from both the Student and Company are properly received, acknowledged, and stored in the system.
 
@@ -778,7 +778,7 @@ This sequence of events ensures that both recommendation data and complaint data
 
 The process begins when the Recommendation System Manager sends a request to the Recommendation System Event Publisher to publish a new recommendation event. The event publisher then forwards this publish request to the Event Bus, where the Notification Event Consumer is actively listening for such events. Upon receiving the event, the Notification Event Consumer processes it and generates a new recommendation with the recipient and content details. 
 
-Subsequently, the Notification Manager is tasked with creating the corresponding notification. The notification data is sent to the DBMS for storage, and the DBMS confirms the successful storage of the notification by sending an "ok" response to the Notification Manager.
+Subsequently, the Notification Manager is tasked with creating the corresponding notification. The notification data is sent to the DBMS for storage, and the DBMS confirms the successful storage of the notification by sending an "ACK" response to the Notification Manager.
 
 This sequence ensures that the recommendation is successfully disseminated and stored for future access.
 
@@ -807,7 +807,7 @@ This sequence ensures that the recommendation is successfully disseminated and s
 
 The process begins when the Complaints Manager sends a request to the Complaints Event Publisher to publish a complaints report event. The Complaints Event Publisher then forwards this event to the Event Bus, where the Notification Event Consumer is monitoring for incoming events. Upon detecting the event, the Notification Event Consumer processes the complaint and generates a new complaints report, which includes the recipient university and the content of the complaint.
 
-Following this, the Notification Manager is responsible for creating a notification based on the generated complaints report. The notification details are sent to the DBMS for storage, and the DBMS responds with an "ok" message to confirm the successful storage of the notification.
+Following this, the Notification Manager is responsible for creating a notification based on the generated complaints report. The notification details are sent to the DBMS for storage, and the DBMS responds with an "ACK" message to confirm the successful storage of the notification.
 
 This sequence ensures that complaints are reported, notifications are generated, and the system maintains an up-to-date record of all complaints.
 
@@ -834,13 +834,13 @@ This sequence ensures that complaints are reported, notifications are generated,
 % ---------------------------------
 % ---------------------------------
 
-The process begins when the University sends an InterruptInternshipRequest to the Gateway Manager. Upon receiving this request, the Gateway Manager forwards the InterruptInternship command to the Internship Manager. The Internship Manager processes the interruption request and sends an "ok" confirmation to the Gateway Manager, which in turn sends a corresponding "ok" message to the University.
+The process begins when the University sends an InterruptInternshipRequest to the Gateway Manager. Upon receiving this request, the Gateway Manager forwards the InterruptInternship command to the Internship Manager. The Internship Manager processes the interruption request and sends an "ACK" confirmation to the Gateway Manager, which in turn sends a corresponding "ACK" message to the University.
 
 Subsequently, the Internship Manager notifies the Student Manager and Company Manager about the removal of the internship association by sending an AssociationRemoved message to both. The Internship Manager then triggers the publishing of an event by sending a publishEvent request to the Internship Event Publisher, which subsequently forwards the event to the Event Bus.
 
 The Notification Event Consumer, which is actively listening for events on the Event Bus, consumes the event and processes it. The Event Bus transmits the event to the Notification Event Consumer, which generates a new notification with the details of the interrupted internship, including the student and company involved. This information is sent to the Notification Manager, which is responsible for creating the notification in the system.
 
-Finally, the Notification Manager stores the notification in the DBMS by sending a createNotification request, and the DBMS responds with an "ok" to confirm the successful storage of the notification.
+Finally, the Notification Manager stores the notification in the DBMS by sending a createNotification request, and the DBMS responds with an "ACK" to confirm the successful storage of the notification.
 
 % //////////////////////////////
 % ------------------------------
