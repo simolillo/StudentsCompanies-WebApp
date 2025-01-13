@@ -1046,49 +1046,6 @@ The tables below are organized by microservice for better clarity and navigation
 % //////////////////////////////
 
 \begin{longtable}{p{0.25\textwidth}p{0.35\textwidth}p{0.35\textwidth}}
-    \caption{NotificationAPI}
-    \vspace{0.5em}\\
-    \hline
-    \vspace{0.5em}\\
-    \textbf{Return Type} & \textbf{Signature} & \textbf{Description} \\
-    \vspace{0.5em}\\
-    \hline
-    \vspace{0.5em}\\
-    \endfirsthead
-    \vspace{0.5em}\\
-    \hline
-    \vspace{0.5em}\\
-    \textbf{Return Type} & \textbf{Signature} & \textbf{Description} \\
-    \vspace{0.5em}\\
-    \hline
-    \vspace{0.5em}\\
-    \endhead
-    
-    \vspace{0.5em}\\
-    \hline
-    \vspace{0.5em}\\
-    \endfoot
-    
-    \vspace{0.5em}\\
-    \hline
-    \vspace{0.5em}\\
-    \endlastfoot
-    
-    List<Notification> &
-    /getNotifications(String userId) &
-    Retrieves all notifications for a specific user. \\
-    \vspace{0.5em}\\
-    Boolean &
-    /markAsRead(String notificationId) &
-    Marks a specific notification as read. \\
-    \vspace{0.5em}\\
-    Boolean &
-    /sendNotification(Notification notification) &
-    Sends a notification to a user or group of users. \\
-
-\end{longtable}
-
-\begin{longtable}{p{0.25\textwidth}p{0.35\textwidth}p{0.35\textwidth}}
     \caption{Notification - EventConsumer}
     \vspace{0.5em}\\
     \hline
@@ -1163,20 +1120,16 @@ The tables below are organized by microservice for better clarity and navigation
     \endlastfoot
     
     List<Internship> &
-    /getRecommendations(String studentId) &
+    /getRecommendations &
     Provides a list of internship recommendations for a student. \\
     \vspace{0.5em}\\
     List<CV> &
-    /getRecommendations(String companyId) &
+    /getRecommendations &
     Provides a list of CV recommendations for a company. \\
     \vspace{0.5em}\\
     Boolean &
-    /submitPreferences(String userId, Preferences preferences) &
+    /submitPreferences &
     Updates the user's preferences for recommendation refinement. \\
-    \vspace{0.5em}\\
-    FeedbackReport &
-    /analyzeFeedback() &
-    Analyzes feedback data to improve recommendation algorithms. \\
 
 \end{longtable}
 
@@ -1251,16 +1204,12 @@ The tables below are organized by microservice for better clarity and navigation
     \endlastfoot
     
     Boolean &
-    /sendMessage(String senderId, String receiverId, String message) &
+    /sendMessage /\{receiverId\} &
     Sends a message between a student and a company or viceversa. \\
     \vspace{0.5em}\\
     List<Message> &
-    /getMessages(String userId, String conversationId) &
+    /getMessages /\{conversationId\} &
     Retrieves all messages for a specific conversation. \\
-    \vspace{0.5em}\\
-    Boolean &
-    /createGroupChat(List<String> participantIds) &
-    Creates a group chat for multiple participants. \\
 
 \end{longtable}
 
@@ -1335,15 +1284,15 @@ The tables below are organized by microservice for better clarity and navigation
     \endlastfoot
     
     Boolean &
-    /scheduleInterview(String studentId, String companyId, Date date) &
+    /scheduleInterview /\{studentId\} &
     Schedules an interview between a student and a company. \\
     \vspace{0.5em}\\
     List<Questionnaire> &
-    /getQuestionnaire(String processId) &
+    /getQuestionnaire /\{processId\} &
     Retrieves the questionnaire for a specific selection process. \\
     \vspace{0.5em}\\
     Boolean &
-    /finalizeSelection(String processId, String studentId) &
+    /finalizeSelection /\{studentId\} &
     Finalizes the selection and assigns a student to the internship. \\
 
 \end{longtable}
@@ -1419,19 +1368,19 @@ The tables below are organized by microservice for better clarity and navigation
     \endlastfoot
     
     Boolean &
-    /createInternship(Internship internship) &
+    /createInternship &
     Allows companies to create a new internship. \\
     \vspace{0.5em}\\
     Boolean &
-    /updateInternship(String internshipId, Internship internship) &
+    /updateInternship /\{internshipId\} &
     Updates an existing internship's details. \\
     \vspace{0.5em}\\
     List<Internship> &
-    /getAllInternships(String companyId) &
+    /getAllInternships /\{companyId\} &
     Retrieves all internships created by a specific company. \\
     \vspace{0.5em}\\
     Boolean &
-    /deleteInternship(String internshipId) &
+    /deleteInternship /\{internshipId\} &
     Deletes a specific internship. \\
 
 \end{longtable}
@@ -1507,23 +1456,23 @@ The tables below are organized by microservice for better clarity and navigation
     \endlastfoot
     
     Boolean &
-    /submitFeedback(String userId, Feedback feedback) &
-    Allows users to submit feedback about internships or processes. \\
+    /submitFeedback /\{internshipId\} &
+    Allows users to submit feedback about an internship. \\
     \vspace{0.5em}\\
     Boolean &
-    /submitComplaint(String userId, Complaint complaint) &
+    /submitComplaint /\{internshipId\} &
     Allows users to submit a complaint regarding internships. \\
     \vspace{0.5em}\\
     List<Feedback> &
-    /getFeedback(String internshipId) &
+    /getFeedback /\{internshipId\} &
     Retrieves all feedback associated with a specific internship. \\
     \vspace{0.5em}\\
     List<Complaint> &
-    /getComplaint(String internshipId) &
+    /getComplaint /\{internshipId\} &
     Retrieves all complaints associated with a specific internship. \\
     \vspace{0.5em}\\
     ComplaintStatus &
-    /getComplaintStatus(String complaintId) &
+    /getComplaintStatus /\{complaintId\} &
     Retrieves the status of a submitted complaint. \\
 
 \end{longtable}
