@@ -12,7 +12,9 @@ The chapter is divided into three main parts:
     \item Feature Identification: This part focuses on the platform's key functionalities, derived from
     primary use cases, and highlights the microservices that support them - Section 5.2.1
     \item Component Integration and Testing: This section describes the integration of microservices
-    to test features, using a thread-based strategy that mirrors real-world scenarios - Section 5.2.2
+    to test features, using a thread-based strategy that mirrors real-world scenarios.
+    The software will be implemented starting from the features; each features
+    will first be implemented and tested, and then integrated with others - Section 5.2.2
     \item System Testing: Here, the focus shifts to testing the platform as a whole, ensuring that
     all components work together seamlessly to deliver a complete and robust system - Section 5.3
 \end{enumerate}
@@ -155,23 +157,20 @@ and internship, enriched with additional useful information automatically gather
 This report is then sent to universities via a notification, as they are responsible for monitoring
 the situation.
 
-The system collects both preliminary data and data provided by users, similar to the process outlined
-in the previous section. Preliminary data includes user actions and profile information, while more
-detailed data is gathered from user feedback and complaints. The Statistical Analysis Tool collects
-the preliminary data, while the Feedback and Complaints Microservice gathers and processes the
-feedback and complaints submitted by users. It’s important to note that user feedback, in addition
-to formal complaints, can also serve as a valuable source of information for the complaint report.
-
-Once the data is collected, it is processed by the system. Relevant data for the complaint report is
+Data have been collected and they have been processed by the system. Relevant data for the
+complaint report is
 then forwarded to the appropriate section, where it undergoes further processing to create the
 finalized complaint report. This report is enriched with the necessary information, making it
 suitable for sending to the universities. Finally, the report is transformed into a notification
 and sent to the universities for monitoring purposes.
 
+This report is an important tool for universities, as it helps them decide whether or not to
+terminate an internship.
+
 \newpage
 \subsection{Components Integration and Testing}
 
-In the integration testing phase of the Students\&Companies (S\&C) platform, a hread-based strategy
+In the integration testing phase of the Students\&Companies (S\&C) platform, a thread-based strategy
 was chosen to ensure a systematic and realistic evaluation of the system. This approach focuses on
 testing complete end-to-end flows, or "threads," that represent specific use cases, such as matching
 students with internships or managing the selection process. 
@@ -241,10 +240,10 @@ As the student explores these opportunities, their profile information,
 preferences, and actions are managed by the student user management microservice, which ensures
 their data is updated and stored in the database.
 
-Once the student finds an internship that interests them, they can apply to start the selection
+Once the student finds an internship that interests him, he can apply to start the selection
 proess. This application triggers the selection process microservice, which records the
 application and initiates the workflow for the company to review. The company can then
-access the student's profile and decide whether to accept them into the selection process.
+access the student's profile and decide whether to accept him into the selection process.
 This decision-making is facilitated by the company user management microservice, which retrieves
 the student's details stored in the database, allowing the company to make an informed decision
 based on the student's qualifications and other relevant data.
@@ -258,7 +257,7 @@ Once the student is accepted, the selection process continues with the student c
 questionnaires designed to assess their fit for the internship. These questionnaires are
 managed and delivered by the selection process microservice, which ensures that they are
 assigned to the appropriate students and tracked throughout the process. All responses
-are stored in the database for later review by the company or other relevant stakeholders.
+are stored in the database for later review by the company.
 
 Additionally, the platform provides the option for online interviews, which can be scheduled
 by the company and the student. The gateway microservice facilitates the scheduling and
@@ -367,16 +366,8 @@ Here is a schematic view of the development and testing of this feature:
 The recommendation system is designed to deliver targeted notifications to both students and companies,
 involving several key stages, each supported by different microservices.
 
-The process begins with data collection, which is split into two categories: preliminary data and
-detailed user data. Preliminary data is automatically gathered from user profiles and their actions
-on the platform, such as internship views, applications, and company activities. The Statistical
-Analysis Tool microservice is responsible for collecting this data, tracking user interactions.
-In addition, more detailed data comes directly from users, such as feedback and complaints.
-This information helps the system refine recommendations. The Feedback
-\& Complaints Service
-collects and stores this user-generated input.
-
-Once data is collected, it needs to be processed and organized. The Statistical Analysis Service
+The process begins once data is collected and they need to be processed and organized.
+The Statistical Analysis Tool
 categorizes the data based on relevance and user type, ensuring that it is ready for recommendation
 generation. This step ensures that only actionable data is passed on to the next phase.
 
@@ -387,8 +378,7 @@ The Recommendation Microservice handles this stage by applying algorithms to ide
 generate tailored suggestions.
 
 After recommendations are generated, they are formatted into notifications. The Notification Microservice 
-transforms these recommendations into user-friendly formats suitable for delivery across various channels, 
-such as email or in-app alerts.
+transforms these recommendations into user-friendly formats suitable for be delivered by in-app alerts.
 
 Finally, the Gateway Microservice ensures that the notifications are delivered to the appropriate users. 
 It routes them according to user preferences, ensuring that each notification reaches its target in 
@@ -408,31 +398,17 @@ Here is a schematic view of the development and testing of this feature:
 \subsubsection{Complaints Report Generation Features}
 
 The complaint report generation feature is designed to produce a detailed report of complaints,
- categorized by student and internship, and enriched with additional useful information gathered
-  automatically from the system. The purpose of this report is to allow universities to monitor
-   and address any issues raised by students or companies. The process begins with the collection
-    of both preliminary data and user-provided data, which includes feedback and complaints
-     submitted by students and companies.
+categorized by student and internship, and enriched with additional useful information gathered
+automatically from the system. The purpose of this report is to allow universities to monitor
+and address any issues raised by students or companies.
 
-The first step is the collection of preliminary data, which is automatically gathered from the
-system. This includes user actions, such as a student's interaction with internship listings—like
-viewing, applying for internships, or saving posts—and company actions, such as posting or
-managing internship listings. Additionally, user profile data, such as registration details,
-is collected. The Statistical Analysis Tool is responsible for gathering this preliminary
-data, tracking how users engage with the platform. In parallel, more detailed data comes
-directly from users in the form of feedback and complaints. Feedback could include general 
-comments or ratings, and complaints refer to dissatisfaction with specific internships or 
-platform features. Notably, feedback, in addition to formal complaints, can serve as a 
-valuable source of information for the complaint report. The Feedback and Complaints 
-Microservice is responsible for gathering and processing both feedback and complaints, 
-ensuring that all user-generated input is captured.
-
-Once the data is collected, the system processes it to organize and categorize the information 
-for the complaint report. This stage involves distinguishing between different types of data, s
-uch as separating formal complaints from general feedback. Relevant details are extracted from 
+The process begins once the data are collected and the system has processed it to organize and
+categorize the information 
+for the complaint report.
+This functionality is performed by the Statistical Analysis Tool.
+This stage involves distinguishing between different types of data,
+such as separating formal complaints from general feedback. Relevant details are extracted from 
 both feedback and complaints to ensure only useful and actionable data is included in the report. 
-The Feedback and Complaints Microservice plays a critical role in this stage, as it processes 
-and organizes the data into a structured format, making it easier to generate the final complaint report.
 
 After the data has been processed, the system moves on to generate the actual complaint report.
 The report is organized by internship and student, clearly indicating which complaints or feedback 
@@ -445,21 +421,15 @@ it contains all necessary details and is presented in an actionable format for t
 Once the complaint report has been finalized, it is converted into a notification format 
 that can be sent to universities. This involves transforming the raw data into a user-friendly 
 notification that universities can easily review and act upon. The Notification Microservice 
-handles this step, ensuring that the report is clear, concise, and suitable for delivery 
-across various channels, such as email or in-app notifications.
+handles this step, ensuring that the report is clear and concise.
 
 Finally, the notification containing the complaint report is sent to the universities. 
 The Gateway Microservice is responsible for routing the notification to the appropriate 
-recipients at the university, ensuring it reaches the relevant departments or staff 
-members responsible for monitoring and addressing student and company concerns. The 
-notification is delivered through the university's preferred channels, ensuring timely 
-access to the information.
+recipients at the university.
 
-Through this detailed process, the complaint report generation feature ensures that 
-universities are promptly informed about any issues that need attention. By combining
-user feedback, complaints, and system-generated data, the feature helps universities
-stay informed, monitor the situation, and take appropriate action to improve the
-platform experience for all users.
+After the complaint report is received by the university, they can decide if it's neccessary to
+interrupt the internship. There is a dedicated space accessible only by university for this feature.
+This feature is performed by the Internship Management Microservice.
 
 Here is a schematic view of the development and testing of this feature:
 
