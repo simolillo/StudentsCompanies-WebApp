@@ -1,0 +1,120 @@
+\chapter{Requirements Traceability}
+
+The traceability matrix provided below aims to establish a clear connection between the requirements outlined in the Requirements Analysis and Specification Document (RASD) and the components of the Student\&Companies system responsible for addressing them. 
+
+The referenced components are discussed in greater detail in Section 2.2, Component View, of this Design Document, where their roles and responsibilities within the system are thoroughly explained.
+
+
+\begin{longtable}{p{0.10\textwidth}p{0.35\textwidth}p{0.35\textwidth}}
+    \textbf{ReqID} & \textbf{Requirement Description} & \textbf{Components Involved} \\
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \endfirsthead
+    \textbf{ReqID} & \textbf{Requirement Description} & \textbf{Components Involved} \\
+    \vspace{0.5em}\\
+    \hline
+    \vspace{0.5em}\\
+    \endhead
+
+    R1.1 &
+    The system allows students to create their profile. &
+    Gateway Microservice (Dispatcher), User Management Microservice (Student Manager). \\
+    \vspace{0.5em}\\
+    R1.2 &
+    The system allows students to upload their CV. &
+    Gateway Microservice (Dispatcher), User Management Microservice (Student Manager), Recommendation System Microservice (Recommendation System Manager). \\
+    \vspace{0.5em}\\
+    R1.3 &
+    The system provides suggestions to students on how to submit their CV. &
+    Gateway Microservice (Dispatcher), User Management Microservice (Student Manager). \\
+    \vspace{0.5em}\\
+    R1.4 &
+    The system allows students to browse internships. &
+    Gateway Microservice (Dispatcher), Selection Process Microservice (Selection Process Manager, Selection Process Event Publisher), Notification Microservice (Notification Manager, Notification Event Consumer) \\
+    \vspace{0.5em}\\
+    R2.1 &
+    The system allows companies to create their profile. &
+    Gateway Microservice (Dispatcher), User Management Microservice (Company Manager). \\
+    \vspace{0.5em}\\
+    R2.2 &
+    The system allows companies to upload their internships. &
+    Gateway Microservice (Dispatcher), User Management Microservice (Company Manager), Recommendation System Microservice (Recommendation System Manager). \\
+    \vspace{0.5em}\\
+    R2.3 &
+    The system provides suggestions to companies on how to submit their internship descriptions. &
+    Gateway Microservice (Dispatcher), User Management Microservice (Company Manager) \\
+    \vspace{0.5em}\\
+    R3.1 &
+    The system notifies students about suitable internships. &
+    Recommendation System Microservice (Recommendation System Manager, Recommendation System Event Publisher), Notification Microservice (Notification Manager, Notification Event Consumer) \\
+    \vspace{0.5em}\\
+    R3.2 &
+    The system notifies companies about suitable student CVs. &
+    Recommendation System Microservice (Recommendation System Manager, Recommendation System Event Publisher), Notification Microservice (Notification Manager, Notification Event Consumer) \\
+    \vspace{0.5em}\\
+    R3.3 &
+    The system recommends based on keyword searching. &
+    Recommendation System Microservice (Recommendation System Manager, Recommendation System Event Publisher), Notification Microservice (Notification Manager, Notification Event Consumer) \\
+    \vspace{0.5em}\\
+    R3.4 &
+    The system recommends based on the characteristics of students and internships. &
+    Recommendation System Microservice (Recommendation System Manager, Recommendation System Event Publisher), Notification Microservice (Notification Manager, Notification Event Consumer) \\
+    \vspace{0.5em}\\
+    R3.5 &
+    The system recommends based on statistical analysis. &
+    Statistical Analysis Tool, Recommendation System Microservice (Recommendation System Manager, Recommendation System Event Publisher), Notification Microservice (Notification Manager, Notification Event Consumer) \\
+    \vspace{0.5em}\\
+    R3.6 &
+    The system collects information regarding the selection process. &
+    Selection Process Microservice (Selection Process Manager), Gateway Microservice (Dispatcher) \\
+    \vspace{0.5em}\\
+    R3.7 &
+    The system collects information regarding the internship. &
+    Internship Microservice (Internship Manager, Internship Event Publisher), Notification Microservice (Notification Manager, Notification Event Consumer), Gateway Microservice (Dispatcher) \\
+    \vspace{0.5em}\\
+    R3.8 &
+    The system asks students and companies to provide feedback and suggestions. &
+    Feedback\&Complaint Microservice (Feedback\&Complaint Manager), Gateway Microservice (Dispatcher) \\
+    \vspace{0.5em}\\
+    R4.1 &
+    The system allows students to apply for an internship. &
+    Gateway Microservice (Dispatcher), Selection Process Microservice (Selection Process Manager, Selection Process Event Publisher), Notification Microservice (Notification Manager, Notification Event Consumer) \\
+    \vspace{0.5em}\\
+    R4.2 &
+    The system allows companies to accept student applications. &
+    Gateway Microservice (Dispatcher), Selection Process Microservice (Selection Process Manager, Selection Process Event Publisher), Notification Microservice (Notification Manager, Notification Event Consumer) \\
+    \vspace{0.5em}\\
+    R4.3 &
+    The system allows students to sign the contract for the internship. &
+    Selection Process Microservice (Selection Process Manager), Gateway Microservice (Dispatcher), Feedback\&Complaint Microservice (Feedback\&Complaint Manager) \\
+    \vspace{0.5em}\\
+    R4.4 &
+    The system allows companies to sign the contract for the internship. &
+    Selection Process Microservice (Selection Process Manager), Gateway Microservice (Dispatcher), Feedback\&Complaint Microservice (Feedback\&Complaint Manager) \\
+    \vspace{0.5em}\\
+    R4.5 &
+    The system supports the selection process by helping manage interviews and also finalise the selections. &
+    Selection Process Microservice (Selection Process Manager), Gateway Microservice (Dispatcher), Feedback\&Complaint Microservice (Feedback\&Complaint Manager) \\
+    \vspace{0.5em}\\
+    R5.1 &
+    The system provides spaces for the official announcements. &
+    Internship Microservice (Internship Manager, Internship Event Publisher), Notification Microservice (Notification Manager, Notification Event Consumer) \\
+    \vspace{0.5em}\\
+    R5.2 &
+    The system provides spaces where interested parties can complain, communicate problems, and provide information about the current status of the ongoing internship. &
+    Communication Platform Microservice (Communication Platform Manager, Communication Platform Event Publisher), Notification Microservice (Notification Manager, Notification Event Consumer), Gateway Microservice (Dispatcher) \\
+    \vspace{0.5em}\\
+    R6.1 &
+    The system allows universities to create their profile. &
+    Gateway Microservice (Dispatcher), User Management Microservice (University Manager). \\
+    \vspace{0.5em}\\
+    R6.2 &
+    The system allows universities to monitor the situation of internships and handle complaints. &
+    Feedback\&Complaint Microservice (Feedback\&Complaint Manager, Feedback\&Complaint Event Publisher), Notification Microservice (Notification Manager, Notification Event Consumer) \\
+    \vspace{0.5em}\\
+    R6.3 &
+    The system allows universities to interrupt an internship. &
+    Gateway Microservice (Dispatcher), Internship Microservice (Internship Manager, Internship Event Publisher), User Management Microservice (Student Manager, Company Manager), Notification Microservice (Notification Manager, Notification Event Consumer) \\
+
+\end{longtable}

@@ -1,0 +1,480 @@
+\chapter{Implementation, Integration and Test plan}
+
+\section{Overview}
+
+This section outlines the processes of implementation, integration, and testing for the Students\&Companies
+(S\&C) platform, describing how its key functionalities were developed and validated to ensure
+reliability and effectiveness.
+
+The chapter is divided into three main parts:
+
+\begin{enumerate}
+    \item Feature Identification: This part focuses on the platform's key functionalities, derived from
+    primary use cases, and highlights the microservices that support them - Section 5.2.1
+    \item Component Integration and Testing: This section describes the integration of microservices
+    to test features, using a thread-based strategy that mirrors real-world scenarios.
+    The software will be implemented starting from the features; each features
+    will first be implemented and tested, and then integrated with others - Section 5.2.2
+    \item System Testing: Here, the focus shifts to testing the platform as a whole, ensuring that
+    all components work together seamlessly to deliver a complete and robust system - Section 5.3
+\end{enumerate}
+
+The platform was designed with a microservices-based architecture, enabling the division
+of functionalities into modular components. During implementation, each microservice was
+developed to address a specific aspect of the system, such as recommendation, selection
+process management, or feedback handling. However, the testing strategy was designed to go
+beyond validating individual components, ensuring that the overall system functionalities
+meet the required specifications.
+
+The testing process was executed in three phases:
+\begin{enumerate}
+    \item Unit Testing: In the first phase, unit tests were performed on individual microservices to ensure
+    that each component functions correctly in isolation. This phase focused on verifying the internal
+    logic and functionality of each microservice, ensuring a solid foundation for the system.
+    \item Feature Integration Testing: The next phase involved integration testing based on the
+    platform's key features. Microservices were integrated to test specific use cases, such as the
+    matching process between students and companies, ensuring that they worked together as intended.
+    A thread-based strategy was used to test these features incrementally, starting from simple
+    interactions and gradually integrating more complex functionalities.
+    \item System Testing: In the final phase, comprehensive system tests were performed to validate
+    the entire platform. This stage involved testing the system as a whole, ensuring that all
+    microservices and integrated features functioned cohesively and met the overall functional requirement
+\end{enumerate}    
+ 
+By combining unit tests, feature-based integration tests, and comprehensive system testing,
+this approach provides a robust framework to identify and resolve issues progressively.
+This ensures that the final system is both scalable and reliable, meeting the diverse needs of its users.
+
+\newpage
+\section{Implementation Plan}
+\subsection{Features Identification}
+
+For the development of the Students\&Companies (S\&C) platform, several key features have been
+identified, each representing a core functionality that directly supports user interactions
+and business processes. The order in which these features are listed reflects the sequence
+in which they will be implemented and tested. Each feature is a logical component of the system,
+providing specific, user-visible functionalities that contribute to the overall experience and
+effectiveness of the platform.
+
+\subsubsection{Profile Creation Features}
+
+The profile creation feature is available for students, companies, and universities.
+For students and companies, the feature is more detailed compared to universities. 
+
+For students, the functionality includes the ability to initially register on the
+platform, add information to their profile, and upload photographs and documents.  
+For companies, they must be able to upload information and photographs to their
+profiles and create pages for internships, where they can also upload relevant information,
+photos, and documents.  
+For universities, the profile functionality is simpler; they only need to upload basic information.
+
+Furthermore, in the meantime, the Statistical Analysis Tool collects data
+from students and companies, both from their profiles and their actions.
+
+\subsubsection{Selection Process Management Features}
+
+The selection process management feature consists of several stages.
+
+Initially,
+the student browses company profiles and views their internship opportunities. When the student
+finds an interesting internship, they apply to start the selection process. At this point, the
+company reviews the student's profile and decides whether to accept them into the selection process.
+If the decision is positive, a notification is sent to the student, informing them of the acceptance.
+This new association is then saved.
+
+The platform also supports managing the selection process by enabling questionnaires through the
+system and providing the option for online interviews.
+
+\subsubsection{Communication Features}
+
+The communication feature is designed to facilitate interaction between students and companies
+throughout the internship. This feature includes two main components.
+
+The first is the official
+internship page, a dedicated space where both parties can interact with distinct permissions.
+Companies have the ability to post announcements, while students can engage by commenting on
+these posts. 
+
+The second component is a direct chat, which functions as a private messaging system between
+the student and the company. This allows for streamlined discussions and the exchange of
+internship-related information.
+
+Notifications are sent to users to highlight important events, such as new official
+announcements, incoming chat messages, or the conclusion of the internship. All data
+related to these communications and the internship itself is securely stored in the database.
+
+\subsubsection{Overview of the features: feedback and complaints collection, recommendation,
+and complaint report}
+
+For clarity, here is an overview of the features: feedback and complaints collection,
+recommendation, and complaint report. These features will be analyzed in detail later on.
+
+The static analysis tool collects preliminary data from student profiles, company profiles,
+as well as data during the selection process and the internship (see UC 4, 5, 6, and 7).
+The feedback and complaints microservice periodically requests feedback from both students
+and companies, both during the selection process and throughout the internship, and records
+any complaints (see UC 10).
+
+The static analysis tool then receives and processes this data, sending the relevant
+information to the recommendation microservice for recommendations and to the feedback
+and complaints microservice for complaint reports (see UC 11). The recommendation
+microservice produces the actual recommendations (see UC 12), while the feedback
+and complaints microservice generates the complaint report (see UC 13).
+
+\subsubsection{Feedback and Complaints Collection Features}
+
+The feedback and complaints collection feature is divided into two functionalities: gathering
+feedback and collecting complaints.
+
+The feedback collection process is initiated by the system. Periodically, the system sends requests
+to both students and companies, prompting them to provide feedback related to the ongoing selection
+process or internship. This ensures timely and relevant input from users regarding their experiences. 
+The feedback provided is then securely stored in the database for further processing and reference.
+
+On the other hand, the complaint collection process is user-initiated. Both students and companies
+have the ability to submit complaints at any time. They can access a dedicated section within the 
+management areas of either the selection process or the internship and express their concerns or issues.
+These complaints are also saved in the database, ensuring they are properly documented and accessible 
+for resolution or analysis.
+
+\subsubsection{Providing Recommendations Features}
+
+The purpose of the recommendation system feature is to provide targeted recommendations through
+notifications to both students and companies. To achieve this, several stages are required.
+Initially, information must be collected. This begins with gathering preliminary data from
+user profiles and actions within the system. Additionally, more detailed information is
+provided directly by users, including feedback and complaints.
+
+These large amounts of data are then processed by the system, organized, and categorized
+based on their intended destination. Positive and useful information relevant to the
+recommendations is ultimately sent to the dedicated recommendation section, where it is
+further processed. The final stage involves transforming this data into notifications for the users.
+
+\subsubsection{Complaints Report Generation Features}
+
+The complaint report generation feature aims to produce a report of complaints, categorized by student
+and internship, enriched with additional useful information automatically gathered from the system.
+This report is then sent to universities via a notification, as they are responsible for monitoring
+the situation.
+
+Data have been collected and they have been processed by the system. Relevant data for the
+complaint report is
+then forwarded to the appropriate section, where it undergoes further processing to create the
+finalized complaint report. This report is enriched with the necessary information, making it
+suitable for sending to the universities. Finally, the report is transformed into a notification
+and sent to the universities for monitoring purposes.
+
+This report is an important tool for universities, as it helps them decide whether or not to
+terminate an internship.
+
+\newpage
+\subsection{Components Integration and Testing}
+
+In the integration testing phase of the Students\&Companies (S\&C) platform, a thread-based strategy
+was chosen to ensure a systematic and realistic evaluation of the system. This approach focuses on
+testing complete end-to-end flows, or "threads," that represent specific use cases, such as matching
+students with internships or managing the selection process. 
+
+The thread-based strategy was selected because it allows the system to be tested in a way that
+closely mirrors real-world usage. By focusing on functional threads derived from key features,
+we can ensure that the microservices interact seamlessly to deliver the desired functionalities.
+This incremental approach also simplifies the detection and resolution of issues, as it starts
+with the core features and progressively integrates additional functionalities.
+
+In practice, the strategy involves first testing simpler flows that require fewer components,
+such as user profile creation, and then gradually introducing more complex scenarios,
+like recommendation and communication. This ensures that each functionality is validated
+individually and in combination with others, providing confidence in the system’s robustness
+and reliability.
+
+\newpage
+\subsubsection{Profile Creation Features}
+
+The profile creation feature supports students, companies, and universities, with students
+and companies having more detailed functionalities than universities.
+
+The process starts with user registration via the gateway microservice, which validates the
+user’s information, such as email and password. For students, the registration is managed by
+the student user management microservice, which processes and stores the data in the database.
+Similarly, companies and universities have their data handled by their respective microservices.
+
+After registration, users log in through the gateway microservice. Students can add detailed
+information to their profiles, including skills, experiences, and documents, managed by the
+student user management microservice and stored in the database. Companies can add company
+descriptions, upload documents and photos, and create internship pages, with the company
+user management microservice handling these operations. Universities have simpler profiles,
+where only basic details are uploaded through the university user management microservice.
+
+Additionally, the Statistical Analysis Tool participates by collecting data from the
+profiles and actions of both students and companies. This includes information from
+student and company profiles as well as their search activities, such as internships
+viewed or applied for. This data is used to provide valuable insights into the matching
+process and recommendations.
+
+Throughout this process, the gateway microservice handles connections and secure data
+transfer, while the user management microservices ensure proper profile creation, updates,
+and storage. The Statistical Analysis Tool contributes by analyzing user data to enhance
+the platform's recommendation and matching functionalities.
+
+Here is a schematic view of the development and testing of this feature:
+
+\begin{figure} [H]
+    \centering
+    \includegraphics [width=0.75\linewidth] {test1.png}
+\end{figure}
+
+\newpage
+\subsubsection{Selection Process Management Features}
+
+The selection process management feature is designed to guide both students and companies through
+a series of steps ultimately culminating in the formal acceptance of the student for an internship.
+
+The process begins when a student browses the available internship opportunities posted
+by companies. This step is enabled by the gateway microservice, which provides the platform
+interface and allows students to easily navigate through different company profiles and their
+internship offers.
+This step is made
+possible also thanks to the usser management microservice that provides the
+substance for this browsing process.
+As the student explores these opportunities, their profile information,
+preferences, and actions are managed by the student user management microservice, which ensures
+their data is updated and stored in the database.
+
+Once the student finds an internship that interests him, he can apply to start the selection
+proess. This application triggers the selection process microservice, which records the
+application and initiates the workflow for the company to review. The company can then
+access the student's profile and decide whether to accept him into the selection process.
+This decision-making is facilitated by the company user management microservice, which retrieves
+the student's details stored in the database, allowing the company to make an informed decision
+based on the student's qualifications and other relevant data.
+
+If the company accepts the student, the notification microservice sends an automatic notification
+to the student, informing them of the company's decision. This notification marks the official
+start of the selection process, and the new association between the student and the company is
+recorded in the system by the selection process microservice.
+
+Once the student is accepted, the selection process continues with the student completing
+questionnaires designed to assess their fit for the internship. These questionnaires are
+managed and delivered by the selection process microservice, which ensures that they are
+assigned to the appropriate students and tracked throughout the process. All responses
+are stored in the database for later review by the company.
+
+Additionally, the platform provides the option for online interviews, which can be scheduled
+by the company and the student. The gateway microservice facilitates the scheduling and
+conducting of these interviews, while the selection process microservice ensures that the
+details of the interview, such as timing and participant information, are properly coordinated.
+The user management microservices continue to handle the specific user data for both the student
+and the company during this phase.
+At the end if the selection process is successfully completed, the student is officially
+accepted for the internship.
+
+Finally, throughout the entire selection process, all information—including applications,
+questionnaires, responses, and interview details—is stored in the database.
+This centralized storage ensures that all data is easily accessible for future
+reference, follow-ups, or reporting.
+
+Here is a schematic view of the development and testing of this feature:
+
+\begin{figure} [H]
+    \centering
+    \includegraphics [width=0.75\linewidth] {test2.png}
+\end{figure}
+
+\newpage
+\subsubsection{Communication Features}
+
+The communication feature is designed to enable effective interaction between students and
+companies throughout the internship. The process begins when a user accesses the platform
+through the gateway microservice, which handles user authentication and ensures secure
+connections. After logging in, users can navigate to the relevant sections of the platform
+where the communication tools are available.
+
+One key component of this feature is the official internship page. This serves as a dedicated
+space for interaction between students and companies, with distinct permissions assigned to
+each party. Companies can use this page to post announcements related to the internship, and
+students can engage with these posts by adding comments. The internship management microservice
+ensures that announcements are correctly linked to their respective internship pages, while the
+communication microservice facilitates the commenting functionality. To keep users informed, the
+notification microservice sends alerts whenever new announcements are made.
+
+Another important component is the direct chat system, which allows private communication between
+students and companies. Messages exchanged through this chat are processed by the communication
+microservice, ensuring secure and real-time delivery. Notifications for new chat messages are
+generated by the notification microservice, ensuring that users are promptly alerted. All
+interactions, including announcements, comments, and chat messages, are securely stored in
+the database for future reference.
+
+Notifications play a crucial role in this feature, ensuring that users are kept updated
+about important events. Whether it’s a new announcement, a received message, or the conclusion
+of an internship, the notification microservice manages the delivery of alerts. These notifications
+are seamlessly integrated into the user experience via the gateway microservice, providing visibility
+to users both during active sessions and upon logging in. Throughout the process, the internship
+management microservice ensures that all communications and interactions are accurately associated
+with their respective internships, with the database acting as the central repository for all related data.
+
+Here is a schematic view of the development and testing of this feature:
+
+\begin{figure} [H]
+    \centering
+    \includegraphics [width=0.75\linewidth] {test3.png}
+\end{figure}
+
+\newpage
+\subsubsection{Feedback and Complaints Collection Features}
+
+The feedback and complaints collection feature operates through two main functionalities: 
+feedback collection and complaint submission. Each process is carefully structured to ensure 
+seamless user interaction and efficient backend operations, with several microservices working 
+together to manage data flow and processing.
+
+The feedback collection process is automated and initiated by the feedback and complaints 
+microservice. At scheduled intervals, this microservice directly interacts with the selection 
+process management microservice or the internship management microservice to identify ongoing 
+processes requiring feedback. It then sends requests to students and companies, prompting them to 
+provide feedback related to these specific contexts. Once users submit their feedback through the 
+platform’s interface, the data is processed by the feedback and complaints microservice and associated 
+with the relevant stage or event. The feedback is then securely stored in the database, creating a 
+structured record for future analysis and decision-making.
+
+The complaint submission process, on the other hand, is user-driven. Students and companies can 
+access a dedicated section within the platform to submit complaints at any time. This section is 
+integrated into the management interfaces for both the selection process and internships, allowing 
+users to express their concerns seamlessly. When a complaint is submitted, it is received directly 
+by the feedback and complaints microservice, which validates the input and queries the selection 
+process management or internship management microservices to associate the complaint with the 
+appropriate context. The validated complaint is then saved in the database, ensuring it is 
+properly documented and available for resolution or review.
+
+The microservices involved in these functionalities include the feedback and complaints 
+microservice, which orchestrates the operations of collecting, organizing, and processing 
+user input. It collaborates directly with the selection process management microservice and 
+the internship management microservice to retrieve contextual information, ensuring that 
+feedback and complaints are accurately linked to relevant events or stages. The database 
+serves as the central repository for storing all collected data, providing secure and 
+reliable storage for future use.
+
+Here is a schematic view of the development and testing of this feature:
+
+\begin{figure} [H]
+    \centering
+    \includegraphics [width=0.75\linewidth] {test4.png}
+\end{figure}
+
+\newpage
+\subsubsection{Providing Recommendations Features}
+
+The recommendation system is designed to deliver targeted notifications to both students and companies,
+involving several key stages, each supported by different microservices.
+
+The process begins once data is collected and they need to be processed and organized.
+The Statistical Analysis Tool
+categorizes the data based on relevance and user type, ensuring that it is ready for recommendation
+generation. This step ensures that only actionable data is passed on to the next phase.
+
+Next, the system generates personalized recommendations by analyzing the processed data. For example,
+a student who has applied for several software engineering internships may receive similar suggestions,
+or a company with multiple marketing internship listings may be connected with students in that field.
+The Recommendation Microservice handles this stage by applying algorithms to identify patterns and
+generate tailored suggestions.
+
+After recommendations are generated, they are formatted into notifications. The Notification Microservice 
+transforms these recommendations into user-friendly formats suitable for be delivered by in-app alerts.
+
+Finally, the Gateway Microservice ensures that the notifications are delivered to the appropriate users. 
+It routes them according to user preferences, ensuring that each notification reaches its target in 
+the most effective way.
+
+These microservices work together seamlessly to ensure that the recommendation system provides 
+relevant, timely notifications to students and companies, enhancing their experience on the platform.
+
+Here is a schematic view of the development and testing of this feature:
+
+\begin{figure} [H]
+    \centering
+    \includegraphics [width=0.75\linewidth] {test5.png}
+\end{figure}
+
+\newpage
+\subsubsection{Complaints Report Generation Features}
+
+The complaint report generation feature is designed to produce a detailed report of complaints,
+categorized by student and internship, and enriched with additional useful information gathered
+automatically from the system. The purpose of this report is to allow universities to monitor
+and address any issues raised by students or companies.
+
+The process begins once the data are collected and the system has processed it to organize and
+categorize the information 
+for the complaint report.
+This functionality is performed by the Statistical Analysis Tool.
+This stage involves distinguishing between different types of data,
+such as separating formal complaints from general feedback. Relevant details are extracted from 
+both feedback and complaints to ensure only useful and actionable data is included in the report. 
+
+After the data has been processed, the system moves on to generate the actual complaint report.
+The report is organized by internship and student, clearly indicating which complaints or feedback 
+are tied to specific internships or individuals. This report is enriched with additional 
+information automatically generated by the system, such as trends in user behavior, context 
+surrounding the complaints, and any other relevant data that can provide further insight into 
+the issues raised. The Feedback and Complaints Microservice generates this report, ensuring 
+it contains all necessary details and is presented in an actionable format for the universities.
+
+Once the complaint report has been finalized, it is converted into a notification format 
+that can be sent to universities. This involves transforming the raw data into a user-friendly 
+notification that universities can easily review and act upon. The Notification Microservice 
+handles this step, ensuring that the report is clear and concise.
+
+Finally, the notification containing the complaint report is sent to the universities. 
+The Gateway Microservice is responsible for routing the notification to the appropriate 
+recipients at the university.
+
+After the complaint report is received by the university, they can decide if it's neccessary to
+interrupt the internship. There is a dedicated space accessible only by university for this feature.
+This feature is performed by the Internship Management Microservice.
+
+Here is a schematic view of the development and testing of this feature:
+
+\begin{figure} [H]
+    \centering
+    \includegraphics [width=0.75\linewidth] {test6.png}
+\end{figure}
+
+\newpage
+\section{System Testing}
+
+System testing is a critical phase of the development lifecycle where the fully
+integrated Students \& Companies (S\&C) platform is rigorously evaluated to ensure that it
+meets both functional and non-functional requirements. The testing environment is carefully
+designed to closely replicate the actual production setup, enabling a comprehensive analysis
+of the platform's behavior under realistic conditions.
+
+Functional testing is focused on verifying that the platform meets the functional specifications
+outlined in the requirements documentation, such as use cases. Key functionalities are examined,
+including profile creation and management for both students and companies, the recommendation
+system’s ability to match students with internships based on CV data and company requirements,
+and support for the selection process, such as interview scheduling and structured questionnaires.
+Communication features, including notifications and messaging, are tested to ensure seamless
+interaction between users, while feedback and complaint management functionalities are validated
+to confirm that users can effectively submit and track concerns.
+
+Non-functional testing evaluates the system’s performance, scalability, and reliability under
+a variety of conditions. This includes:
+
+\begin{itemize}
+\item Performance Testing: Measuring response times, throughput, and resource utilization to ensure that the
+system operates efficiently under typical conditions.
+\item Load Testing: Gradually increasing the number of concurrent users or sustaining a steady workload to
+verify that the platform can handle expected user volumes without performance degradation.
+\item Stress Testing: Simulating extreme conditions, such as sudden spikes in user activity or system failures,
+to test the platform’s ability to recover and maintain availability in challenging scenarios.
+\end{itemize}
+
+To ensure thorough coverage, the testing methodology combines manual and automated approaches.
+Manual testing is employed to validate specific scenarios, such as edge cases in the recommendation
+system or workflows related to complaint resolution. Automated testing leverages techniques such as
+fuzz testing, concolic execution, and search-based strategies, enabling repeated evaluations of the
+system under varying conditions. These methods ensure the platform’s robustness, reliability, and
+consistency across diverse environments.
+
+Through this structured and comprehensive system testing approach, the S\&C platform is validated
+to perform reliably and effectively in real-world scenarios, meeting the needs of students,
+companies, and universities alike.
