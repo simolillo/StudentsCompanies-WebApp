@@ -2,7 +2,7 @@
 
 ## The problem: Students&Companies
 
-![Welcome](docs/README_images/welcome.png)
+![Welcome](./README_images/welcome.png)
 
 Students&Companies (S&C) is a platform that helps match university students looking for internships and companies offering them. The platform should ease the matching between students and companies based on:
 
