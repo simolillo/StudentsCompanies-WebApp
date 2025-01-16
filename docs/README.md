@@ -1,6 +1,9 @@
 [![LaTeX](https://img.shields.io/badge/latex-%23008080.svg?style=for-the-badge&logo=latex&logoColor=white)](https://www.latex-project.org)
 
 ## The problem: Students&Companies
+
+![Welcome](docs/README_images/welcome.png)
+
 Students&Companies (S&C) is a platform that helps match university students looking for internships and companies offering them. The platform should ease the matching between students and companies based on:
 
 * the experiences, skills and attitudes of students, as listed in their CVs;
